@@ -100,7 +100,6 @@ class Enivornment {
       s.resetScore();
       t.resetTime();
       a.lives = 3;
-      e.reset();
     }
 
   }
@@ -114,7 +113,7 @@ class Enivornment {
     }
     
     for(int i = 0; i < 3; i++){
-      coinList.add(new Coins(new PVector(120+50*i,250), 15));
+      coinList.add(new Coins(new PVector(100+50*i,225), 15));
       coinList.add(new Coins(new PVector(100+50*i,475), 15));
       coinList.add(new Coins(new PVector(300+50*i,125), 15));
       coinList.add(new Coins(new PVector(500+50*i,525), 15));
@@ -133,7 +132,7 @@ class Enivornment {
   void detectCoin(){ 
     for (int i = coinList.size() - 1; i >= 0; i--) {
       Coins coin = coinList.get(i);
-      if(!coin.got && abs(coin.pos.x-a.pos.x) < 25 && abs(coin.pos.y-a.pos.y) < 30){
+      if(!coin.got && abs(coin.pos.x-a.pos.x) < 25 && abs(coin.pos.y-a.pos.y) < 75){
         s.incrementScore();
         coin.got = true;
       }
@@ -226,7 +225,7 @@ class Enivornment {
   void generatePlf() {
     
     plf.add(new Platform_on_ground(new PVector(100, 500), 2, 1));
-    plf.add(new Platform_on_ground(new PVector(100, 270), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(100, 250), 6, 1));
     
     plf.add(new Platform_on_ground(new PVector(300, 400), 5, 2));
     plf.add(new Platform_on_ground(new PVector(300, 150), 4, 1));
