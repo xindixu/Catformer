@@ -1,3 +1,4 @@
+// when restart, the zombie does not return to the inital position
 import java.util.Map;
 Sprite a;
 Enemy e;
