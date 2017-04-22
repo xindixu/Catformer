@@ -4,7 +4,7 @@ abstract class Scene{
   ArrayList<Water> wtr;
   ArrayList<Coins> cn;
   ArrayList<Object> obj;
-  ArrayList<PImage> img;
+  String[] objName;
   int pfSize = 25;
   
   Scene(String name){
@@ -12,10 +12,9 @@ abstract class Scene{
     this.plf = new ArrayList();
     this.wtr = new ArrayList();
     this.cn = new ArrayList();
-    this.img = new ArrayList();
   }
   
-  abstract void loadImgObj();
+  abstract void generateObj();
   abstract void generatePlf();
   abstract void generateCn();
   
@@ -24,19 +23,17 @@ abstract class Scene{
 class Forest extends Scene{
   Forest(){
     super("forest");
-  }
-  
-  void loadImgObj(){
     String[] str = {"Bush (1)","Bush (2)","Bush (3)","Bush (4)","Crate","Mushroom (1)",
                     "Mushroom (2)","Sign (1)","Sign (2)","Stone","Tree (1)","Tree (2)","Tree (3)"};
-    for(String s:str){
-      img.add(loadImage("scene/forest/Objects/"+s));
-    }
+    this.objName = str.clone();
+  }
+
+   
+  void generateObj(){
+    obj.add(new Object(new PVector(100,450),1));
   }
   
-  void generateObj(){
-    obj.add()
-  }
+  
   
   void generatePlf(){
     plf.add(new Platform_on_ground(new PVector(100, 500), 2, 1));
@@ -71,19 +68,20 @@ class Forest extends Scene{
       cn.add(new Coins(new PVector(500+50*i,525), 15));
     }
   }
+  
 }
 
 class Winter extends Scene{
   Winter(){
     super("winter");
-  }
-  
-  void loadImgObj(){
     String[] str = {"Crate","Crystal","IceBox","Igloo","Sign (1)","Sign (2)",
                     "SnowMan","Stone","Tree (1)","Tree (2)"};
-    for(String s:str){
-      img.add(loadImage("scene/winter/Objects/"+s));
-    }
+    this.objName = str.clone();
+  }
+ 
+ 
+  void generateObj(){
+    obj.add(new Object(new PVector(100,450),1));
   }
   
   void generatePlf(){
@@ -124,16 +122,17 @@ class Winter extends Scene{
 class Desert extends Scene{
   Desert(){
     super("desert");
-  }
-  
-  void loadImgObj(){
     String[] str = {"Bush (1)","Bush (2)","Cactus (1)","Cactus (2)","Cactus (3)",
                     "Crate","Grass (1)","Grass (2)","Sign","SignArrow","Skeleton",
                     "Stone","StoneBlock","Tree"};
-    for(String s:str){
-      img.add(loadImage("scene/desert/Objects/"+s));
-    }
+    this.objName = str.clone();
   }
+
+    
+  void generateObj(){
+    obj.add(new Object(new PVector(100,450),1));
+  }
+  
   
   void generatePlf(){
     plf.add(new Platform_on_ground(new PVector(100, 500), 2, 1));
@@ -173,14 +172,14 @@ class Desert extends Scene{
 class Graveyard extends Scene{
   Graveyard(){
     super("graveyard");
+    String[] str = {"ArrowSign","Bush (1)","Bush (2)","Crate","DeadBush","Sign",
+                    "Skeleton","TombStone (1)","TombStone (2)","Tree"};
+    this.objName = str.clone();
   }
   
-  void loadImgObj(){
-    String[] str = {"ArrowSign","Bush (1)","Bush (2)","Crate","DeathBush","Sign","Skelton",
-                    "Skeleton","TombStone (1)","TombStone (2)","Tree"};
-    for(String s:str){
-      img.add(loadImage("scene/graveyard/Objects/"+s));
-    }
+    
+  void generateObj(){
+    obj.add(new Object(new PVector(100,450),1));
   }
   
   void generatePlf(){

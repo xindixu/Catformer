@@ -6,6 +6,7 @@ class Enivornment {
   Flag flag;
   PImage bg;
   PImage[] plfImg;
+  PImage[] objImg;
  
   HashMap<String,Button> button;
   String[] buttonName = {"Start","Restart","Resume","Pause","Quit"};
@@ -142,6 +143,14 @@ class Enivornment {
       plfImg[i] = loadImage("scene/"+currentScene+"/Tiles/"+(i+1)+".png");
       plfImg[i].resize(pfSize, pfSize);
     }
+    
+    Scene sc = getScene(currentScene);
+    objImg = new PImage[sc.objName.length];
+    int j = 0;
+    for(String s:sc.objName){
+      objImg[j] = loadImage("scene/"+currentScene+"/Objects/"+s+".png");
+      j++;
+    }
   }
   
   // platforms
@@ -196,6 +205,7 @@ class Enivornment {
       displayAllCoins();
       s.display();
       flag.display();
+      testing();
     }
     displayBttn();
   }
@@ -338,6 +348,10 @@ class Enivornment {
   void testing() {
     for (int i = 0; i < plfImg.length; i ++) {
       image(plfImg[i], 0+i*52, 500);
+      text((i+1), 0+i*52, 500);
+    }
+    for (int i = 0; i < objImg.length; i ++) {
+      image(objImg[i], 0+i*52, 500);
       text((i+1), 0+i*52, 500);
     }
   }
