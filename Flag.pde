@@ -1,6 +1,6 @@
 class Flag{
   
-  PVector pos = new PVector();
+  PVector pos;
   int size;
   int numFrames = 10;
   PImage[] flags = new PImage[numFrames];

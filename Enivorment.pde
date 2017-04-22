@@ -1,13 +1,11 @@
 class Enivornment {
-  PVector origin;
+  String name;
   float g;
   int w, h;
   int pfSize = 25;
   Flag flag;
-
-  ArrayList<Platform> plf;
-  ArrayList<Water> wtr;
-  ArrayList<Coins> coinList;
+  PImage bg;
+  PImage[] plfImg;
  
   HashMap<String,Button> button;
   String[] buttonName = {"Start","Restart","Resume","Pause","Quit"};
@@ -15,12 +13,12 @@ class Enivornment {
   HashMap<String,Screen> screen;
   String[] screenName = {"Game","Pause","Win","Lose"};
   String currentScreen;
+  
+  HashMap<String,Scene> scene;
+  String[] sceneName = {"forest","winter","desert","graveyard"};
+  String currentScene;
     
   Enivornment() {
-    this.origin = new PVector(0,0);
-    plf = new ArrayList();
-    wtr = new ArrayList(); 
-    coinList = new ArrayList();
     a = new Sprite("cat",new PVector(20,600));
     e = new Enemy("zombie", new PVector(500,500), a.pos);
     s = new Score(0);
@@ -28,23 +26,20 @@ class Enivornment {
 
     screen = new HashMap<String,Screen>();
     button = new HashMap<String,Button>();
-
-     
+    scene = new HashMap<String,Scene>();     
   }
   
 
   void setupEnv() {
-    bg = loadImage("BG.png"); 
-    plfImg = new PImage[18];
-    loadAllPlf();
     a.setupStates();
     e.setStates();
-    generateCoins();
     setupScreen();
+    setupScene();
     generateBttn();
     setScreen("Game");
+    setScene("forest");
   }
-  
+ 
    
   // button
   void generateBttn(){
@@ -93,62 +88,16 @@ class Enivornment {
     Button restart = button.get("Restart");
     if(restart.status == "Clicked"){
       setScreen("Game");
-      a.pos.set(20,600);
-      a.vel.set(0,0);
-      a.acc.set(0,0);
+      setScene("forest");
+      a.reset();
+      e.reset();
       resetCoins();
       s.resetScore();
       t.resetTime();
       a.lives = 3;
     }
+  }
 
-  }
-  
-  
-  //Coin Implementation
-  //generate the coins in the game
-  void generateCoins(){
-    for(int i = 0; i < 8; i++){
-      coinList.add(new Coins(new PVector(150+50*i,675), 15));
-    }
-    
-    for(int i = 0; i < 3; i++){
-      coinList.add(new Coins(new PVector(100+50*i,225), 15));
-      coinList.add(new Coins(new PVector(100+50*i,475), 15));
-      coinList.add(new Coins(new PVector(300+50*i,125), 15));
-      coinList.add(new Coins(new PVector(500+50*i,525), 15));
-    }
-    
-  }
-  
-  //cycles through the arraylist of coins and displays them
-  void displayAllCoins(){
-    for (Coins c : coinList) {
-      c.display();
-    }
-  }
-  
-  //detects if player is on coin and "collects" the coin
-  void detectCoin(){ 
-    for (int i = coinList.size() - 1; i >= 0; i--) {
-      Coins coin = coinList.get(i);
-      if(!coin.got && abs(coin.pos.x-a.pos.x) < 25 && abs(coin.pos.y-a.pos.y) < 75){
-        s.incrementScore();
-        coin.got = true;
-      }
-    }
-  }
-  
-  //clears arraylist of coins and generates a new list and resets score to 0
-  void resetCoins(){
-    for (int i = coinList.size() - 1; i >= 0; i--) {
-      Coins coin = coinList.get(i);
-      coin.got = true;
-    }
-    generateCoins();
-    s.resetScore();
-  }
-  
   
   boolean detectFlag(){
     if(abs(flag.pos.x-a.pos.x) < 25 && abs(flag.pos.y-a.pos.y) < 75){
@@ -160,51 +109,6 @@ class Enivornment {
   }
   
   // screen
-
-  void setupScreen(){
-  
-    String[] pText = {"Pause","Click the button to resume the game."};
-    PVector[] ppos = {new PVector(width/2,100),new PVector(width/2,130)};
-    int[] pTxc = {color(0),color(0)};
-    PFont[] pTxf = {createFont("Comic Sans MS Bold",32),createFont("Comic Sans MS Bold",20)};
-    PVector[] pBttnPos ={new PVector(-30,200),new PVector(30,250),new PVector(30,300),new PVector(-30,350),new PVector(30,400)};
-    
-    String[] gText = {"Score:","Life:"};
-    PVector[] gpos = {new PVector(10,20),new PVector(10,40)};
-    int[] gTxc = {color(0),color(0)};
-    PFont[] gTxf = {createFont("Comic Sans MS Bold",20),createFont("Comic Sans MS Bold",20)};
-    PVector[] gBttnPos = {new PVector(-30,200),new PVector(30,250),new PVector(-30,300),new PVector(30,350),new PVector(30,400)};
-    
-    String[] wText = {"Congrats!","Your score:",""};
-    PVector[] wpos = {new PVector(500,100),new PVector(500,130),new PVector(630,130)};
-    int[] wTxc = {color(0),color(0),color(0)};
-    PFont[] wTxf = {createFont("Comic Sans MS Bold",32),createFont("Comic Sans MS Bold",20),createFont("Comic Sans MS Bold",20)};
-    PVector[] wBttnPos = {new PVector(-30,200),new PVector(30,250),new PVector(-30,300),new PVector(-30,350),new PVector(30,400)};
-    
-    
-    String[] lText = {"Loser!","Your score:",""};
-    PVector[] lpos = {new PVector(width/2,100),new PVector(width/2,130),new PVector(630,130)};
-    int[] lTxc = {color(0),color(0),color(0)};
-    PFont[] lTxf = {createFont("Comic Sans MS Bold",32),createFont("Comic Sans MS Bold",20),createFont("Comic Sans MS Bold",20)};
-    PVector[] lBttnPos = {new PVector(-30,200),new PVector(30,250),new PVector(-30,300),new PVector(-30,350),new PVector(30,400)};
-    
-    Screen game = new Screen();
-    Screen pause = new Screen();
-    Screen win = new Screen(); 
-    Screen lose = new Screen();
-    
-    game.construct(gText,gpos,gTxc,gTxf,bg,gBttnPos);
-    pause.construct(pText,ppos,pTxc,pTxf,bg,pBttnPos);
-    win.construct(wText,wpos,wTxc,wTxf,bg,wBttnPos);
-    lose.construct(lText,lpos,lTxc,lTxf,bg,lBttnPos);
-    
-    
-    screen.put("Game",game);
-    screen.put("Win",win);
-    screen.put("Lose",lose);
-    screen.put("Pause",pause);
-  }
-  
   Screen getScreen(String name){
     return screen.get(name);
   }  
@@ -219,47 +123,37 @@ class Enivornment {
      }
   }
   
-  
-  
-  // platforms
-  void generatePlf() {
-    
-    plf.add(new Platform_on_ground(new PVector(100, 500), 2, 1));
-    plf.add(new Platform_on_ground(new PVector(100, 250), 6, 1));
-    
-    plf.add(new Platform_on_ground(new PVector(300, 400), 5, 2));
-    plf.add(new Platform_on_ground(new PVector(300, 150), 4, 1));
-    
-    plf.add(new Platform_on_ground(new PVector(500, 250), 4, 1));
-    plf.add(new Platform_on_ground(new PVector(500, 550), 4, 1));
-    plf.add(new Platform_on_ground(new PVector(600, 400), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(700, 450), 6, 1));
-    
-    // ground
-    plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
-    plf.add(new Platform_on_ground(new PVector(575,700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750,700), 10, 1));
-    
-    wtr.add(new Water(new PVector(675,700),2,1));
-    wtr.add(new Water(new PVector(525,700),1,1));
+  // scene
+  Scene getScene(String name){
+    return scene.get(name);
   }
-
-  void loadAllPlf() {
-    generatePlf();
-    for (int i = 0; i < plfImg.length; i ++) {
-      plfImg[i] = loadImage("Tiles/"+(i+1)+".png");
+  
+  void setScene(String name){
+    currentScene = name;
+    loadSceneImg();
+    a.reset();
+  }
+  
+   
+  void loadSceneImg() {
+    bg = loadImage("scene/"+currentScene+"/BG.png");
+    plfImg = new PImage[18];
+    for (int i = 0; i < 18; i ++) {
+      plfImg[i] = loadImage("scene/"+currentScene+"/Tiles/"+(i+1)+".png");
       plfImg[i].resize(pfSize, pfSize);
     }
   }
-
-  void displayAllPlf() {    
-    for (Platform p : plf) {
+  
+  // platforms
+  void displayAllPlf() {
+    Scene sc = getScene(currentScene);
+    for (Platform p : sc.plf) {
       p.display();
       p.generateBoundaries();      
       detectCollision(a, p);
       detectCollision(e, p);
     }
-    for (Water w : wtr) {
+    for (Water w : sc.wtr) {
       w.display();
       w.generateBoundaries();      
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
@@ -271,11 +165,31 @@ class Enivornment {
       }
     }
   }
-    
   
+  // coin
+  void displayAllCoins(){
+    Scene sc = getScene(currentScene);
+    for(Coins c:sc.cn){
+      if(!c.got && abs(c.pos.x-a.pos.x) < 25 && abs(c.pos.y-a.pos.y) < 75){
+        s.incrementScore();
+        c.got = true;
+      }
+      c.display();
+    }
+  }
+  
+  
+  //clears arraylist of coins and generates a new list and resets score to 0
+  void resetCoins(){
+    Scene sc = getScene(currentScene);
+    for(Coins c:sc.cn){
+      c.got = false;
+    }
+    
+  } 
+   
+   
   void display() {
-    //image(bg, origin.x, origin.y);
-    //testing();
     getScreen(currentScreen).display();  
     if(currentScreen == "Game"){
       displayAllPlf();

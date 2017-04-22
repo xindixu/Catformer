@@ -25,9 +25,7 @@ class Coins{
   PVector getPos(){
     return pos;
   }
-  
-  
-  
+    
   //displays the animated coin object
   void display(){
     if((millis() - animationTimer) >= animationTimerValue){

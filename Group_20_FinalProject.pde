@@ -12,7 +12,7 @@ static boolean left,right,up,down,mouse;
 Enivornment en;
 
 void setup(){
-  size(1000,750);
+  size(1800,750);
   frameRate(60);
   
   en = new Enivornment();
@@ -28,7 +28,6 @@ void draw(){
   en.bttnAct();
   
   if(a.lives > 0 && en.currentScreen == "Game"){
-    en.detectCoin();
     if(a.currentState == "Dead"){
       en.resetCoins();
     }
@@ -39,7 +38,22 @@ void draw(){
     e.update();
     e.display();
     if(en.detectFlag()){
-      en.setScreen("Win");
+      a.reset();
+      e.reset();
+      switch(en.currentScene){
+        case "forest":
+          en.setScene("winter");
+          break;
+        case "winter":
+          en.setScene("desert");
+          break;
+        case "desert":
+          en.setScene("graveyard");
+          break;
+        case "graveyard":
+          en.setScreen("Win");
+          break;
+      }
     }
   }
   

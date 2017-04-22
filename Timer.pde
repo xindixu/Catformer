@@ -20,7 +20,7 @@ class Timer{
   
   void display(){
     strokeWeight(4);
-    fill(0);
+    fill(255);
     textSize(20);
     text("Frame: " + frameCnt,10,80);
     text("Time: " + frameCnt/24,10,100);

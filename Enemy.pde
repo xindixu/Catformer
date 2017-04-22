@@ -38,7 +38,7 @@ class Enemy{
    void setStates(){
      for (int i = 0; i < stateName.length; i++){
        State temp = new State(frameCnt[i],stateName[i]);
-       temp.loadImg(name+"/"+temp.name+" (",").png",size);
+       temp.loadImg("sprite/"+name+"/"+temp.name+" (",").png",size);
        states.put(temp.name,temp);
      }
    }

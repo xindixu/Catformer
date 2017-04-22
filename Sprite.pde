@@ -39,7 +39,7 @@ class Sprite{
   void setupStates(){
     for(int i = 0; i < stateName.length; i++){
       State temp = new State(frameCnt[i],stateName[i]);
-      temp.loadImg(name+"/"+temp.name+" (",").png",size);
+      temp.loadImg("sprite/"+name+"/"+temp.name+" (",").png",size);
       states.put(temp.name,temp);
     }
   }
@@ -100,13 +100,17 @@ class Sprite{
     } 
     if(currentState.equals("Dead")){
       if(getState("Dead").end){
-        changeState("Idle");
         lives -= 1;
-        pos.set(20,600);
-        vel.set(0,0);
-        acc.set(0,0);
+        reset();
       }
     }
+  }
+  
+  void reset(){
+    changeState("Idle");
+    pos.set(20,600);
+    vel.set(0,0);
+    acc.set(0,0);
   }
   
   void control(){

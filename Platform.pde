@@ -1,5 +1,4 @@
 abstract class Platform{
-  Enivornment en;
   int size = 25;
   PVector pos;
   int wn,hn;
