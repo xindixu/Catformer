@@ -1,7 +1,7 @@
 // when restart, the zombie does not return to the inital position
 import java.util.Map;
-Sprite a;
-Enemy e;
+Sprite a,sa;
+Enemy zb,zg;
 Score s;
 static Timer t;
 static PImage bg,heart;
@@ -36,11 +36,14 @@ void draw(){
     t.display();
     a.update();
     a.display();
-    e.update();
-    e.display();
+    //zb.update();
+    //zb.display();
+    zg.update();
+    zg.display();
     if(en.detectFlag()){
       a.reset();
-      e.reset();
+      //zb.reset();
+      zg.reset();
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");
@@ -55,6 +58,14 @@ void draw(){
           en.setScreen("Win");
           break;
       }
+    }
+    if(en.currentScene == "graveyard"){
+      zb.update();
+      zb.display();
+    }
+    if(en.currentScene == "winter"){
+      sa.update();
+      sa.display();
     }
   }
   

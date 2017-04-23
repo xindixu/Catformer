@@ -3,7 +3,7 @@ class Enemy{
    String[] stateName = {"Attack", "Walk"};
    int[] frameCnt = {8,10};
    HashMap<String,State> states;
-   PVector pos,vel,accel;
+   PVector pos,start,vel,accel;
    PVector leftp, rightp, headp, bodyp;
    PVector target;
    float f,g;
@@ -18,6 +18,7 @@ class Enemy{
    Enemy(String name, PVector pos, PVector target){
      this.name = name;
      this.pos = pos.copy();
+     this.start = pos.copy();
      this.vel = new PVector();
      this.accel = new PVector();
      this.leftp = new PVector();
@@ -113,7 +114,7 @@ class Enemy{
   void reset(){
     changeState("Walk");
     attacked = false;
-    pos.set(400,400);
+    pos.set(start.x,start.y);
     goRight = false;
   }
      

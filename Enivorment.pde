@@ -21,7 +21,10 @@ class Enivornment {
     
   Enivornment() {
     a = new Sprite("cat",new PVector(20,600));
-    e = new Enemy("zombie", new PVector(500,500), a.pos);
+    sa = new Sprite("santa",new PVector(600,600));
+    zb = new Enemy("zombie", new PVector(1000,500), a.pos);
+    zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
+    
     s = new Score(0);
     flag = new Flag(new PVector(825, 420), 75);
 
@@ -33,7 +36,9 @@ class Enivornment {
 
   void setupEnv() {
     a.setupStates();
-    e.setStates();
+    sa.setupStates();
+    zb.setStates();
+    zg.setStates();
     setupScreen();
     setupScene();
     generateBttn();
@@ -91,7 +96,9 @@ class Enivornment {
       setScreen("Game");
       setScene("forest");
       a.reset();
-      e.reset();
+      sa.reset();
+      zb.reset();
+      zg.reset();
       resetCoins();
       s.resetScore();
       t.resetTime();
@@ -160,17 +167,27 @@ class Enivornment {
       p.display();
       p.generateBoundaries();      
       detectCollision(a, p);
-      detectCollision(e, p);
+      detectCollision(sa, p);
+      detectCollision(zb, p);
+      detectCollision(zg, p);
     }
     for (Water w : sc.wtr) {
       w.display();
       w.generateBoundaries();      
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
+        sa.changeState("Dead");
         print(a.currentState);
+        print(sa.currentState);
       }
-      if(detectEdge(e,w) && e.goRight){
-        e.goRight = false;
+      if(detectEdge(zb,w) && zb.goRight){
+        zb.goRight = false;
+      }
+      if(detectEdge(zb,w) && zb.goRight == false){
+        zb.goRight = true; 
+      }
+      if(detectEdge(zg,w) && zg.goRight){
+        zg.goRight = false;
       }
     }
   }
