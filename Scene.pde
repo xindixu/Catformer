@@ -4,6 +4,7 @@ abstract class Scene{
   ArrayList<Water> wtr;
   ArrayList<Coins> cn;
   ArrayList<Object> obj;
+  ArrayList<Enemy> en;
   String[] objName;
   int pfSize = 25;
   
@@ -12,8 +13,11 @@ abstract class Scene{
     this.plf = new ArrayList();
     this.wtr = new ArrayList();
     this.cn = new ArrayList();
+    this.obj = new ArrayList();
+    this.en = new ArrayList();
   }
   
+  //abstract void generateEn();
   abstract void generateObj();
   abstract void generatePlf();
   abstract void generateCn();
@@ -30,9 +34,8 @@ class Forest extends Scene{
 
    
   void generateObj(){
-    obj.add(new Object(new PVector(100,450),1));
+    obj.add(new Object(new PVector(100,200),1));
   }
-  
   
   
   void generatePlf(){

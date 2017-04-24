@@ -25,8 +25,10 @@ class Flag{
     return re;
   }
   void display(){
+    pushMatrix();
     translate(pos.x,pos.y);
     idle.display(false);
+    popMatrix();
   }
 }
   

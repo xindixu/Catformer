@@ -95,7 +95,6 @@ class Enivornment {
       setScreen("Game");
       setScene("forest");
       a.reset();
-      sa.reset();
       zb.reset();
       zg.reset();
       resetCoins();
@@ -104,10 +103,10 @@ class Enivornment {
       a.lives = 3;
     }
     
-    Button info = button.get("Info");
-    if(info.status == "Clicked"){
-      setScreen("Info");
-    }
+    //Button info = button.get("Info");
+    //if(info.status == "Clicked"){
+    //  setScreen("Info");
+    //}
   }
 
 
@@ -163,7 +162,6 @@ class Enivornment {
       p.display();
       p.generateBoundaries();      
       detectCollision(a, p);
-      detectCollision(sa, p);
       detectCollision(zb, p);
       detectCollision(zg, p);
     }
@@ -172,9 +170,6 @@ class Enivornment {
       w.generateBoundaries();      
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
-        sa.changeState("Dead");
-        print(a.currentState);
-        print(sa.currentState);
       }
       if(detectEdge(zb,w) && zb.goRight){
         zb.goRight = false;
@@ -187,7 +182,13 @@ class Enivornment {
       }
     }
   }
-  
+  // obj
+  void displayAllObj(){
+    Scene sc = getScene(currentScene);
+    for(Object o:sc.obj){
+      o.display();
+    }
+  }
   // coin
   void displayAllCoins(){
     Scene sc = getScene(currentScene);
@@ -216,6 +217,7 @@ class Enivornment {
     if(currentScreen == "Game"){
       displayAllPlf();
       displayAllCoins();
+      displayAllObj();
       s.display();
       flag.display();
       santa.display();

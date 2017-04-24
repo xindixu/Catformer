@@ -29,10 +29,7 @@ void draw(){
   en.detectBttn();
   en.bttnAct();
   
-  if(en.currentScreen == "Home"){
-    // display home screen
-  }
-  else if(a.lives > 0 && en.currentScreen == "Game"){
+  if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
       en.resetCoins();
     }
@@ -62,14 +59,6 @@ void draw(){
           en.setScreen("Win");
           break;
       }
-    }
-    if(en.currentScene == "graveyard"){
-      zb.update();
-      zb.display();
-    }
-    if(en.currentScene == "winter"){
-      sa.update();
-      sa.display();
     }
   }
   
