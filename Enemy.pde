@@ -1,7 +1,7 @@
 class Enemy{
    String name;
-   String[] stateName = {"Attack", "Walk"};
-   int[] frameCnt = {8,10};
+   String[] stateName = {"Attack", "Walk", "Dead", "Jump"};
+   int[] frameCnt = {8,10,12,10};
    HashMap<String,State> states;
    PVector pos,start,vel,accel;
    PVector leftp, rightp, headp, bodyp;
@@ -82,8 +82,13 @@ class Enemy{
          vel.set(0,0); 
        }
      }
+     if(currentState.equals("Dead")){
+       if(getState("Dead").end){
+       reset();
+       }
+     }
    }
-     
+   
    void chase(float Ledge, float Redge, PVector target){
      if(leftp.x <= Ledge && bodyp.y > 600){
          goRight = true;
@@ -106,6 +111,11 @@ class Enemy{
      
      if(attacked && getState("Attack").end){
        a.changeState("Dead");
+       reset();
+     }
+     if(((bodyp.y - target.y) <= 30) && (abs(bodyp.x - target.x) <= 20)){
+       changeState("Dead");
+       s.add(30);
        reset();
      }
    }
@@ -167,12 +177,5 @@ class Enemy{
       temp.display(true);
       popMatrix();
     }
-    
-    // display the actual position / feet position
-    //ellipse(pos.x,pos.y,10,10);
-    //ellipse(leftp.x,leftp.y,10,10);
-    //ellipse(rightp.x,rightp.y,10,10);
-    //ellipse(headp.x,headp.y,10,10);
-    //ellipse(bodyp.x,bodyp.y,10,10);
   }
 }
