@@ -5,6 +5,7 @@ import java.util.Map;
 
 Minim minim;
 AudioPlayer player;
+AudioPlayer jump;
 
 Sprite a,sa;
 Enemy zb,zg;
@@ -23,8 +24,11 @@ void setup(){
   frameRate(60);
   
   minim = new Minim(this);
+  jump = minim.loadFile("sounds/Jump.wav");
   player = minim.loadFile("sounds/Underclocked(level1).mp3");
-  player.LOOP_CONTINUOUSLY()
+  player.play();
+  player.loop();
+  
   
   en = new Enivornment();
   en.setupEnv();   
@@ -57,15 +61,28 @@ void draw(){
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");
+          player.close();
+          player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
+          player.play();
+          player.loop();
           break;
         case "winter":
           en.setScene("desert");
+          player.close();
+          player = minim.loadFile("sounds/Searching(level3).mp3");
+          player.play();
+          player.loop();
           break;
         case "desert":
           en.setScene("graveyard");
+          player.close();
+          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
+          player.play();
+          player.loop();
           break;
         case "graveyard":
           en.setScreen("Win");
+          player.close();
           break;
       }
     }
@@ -110,6 +127,16 @@ void keyPressed(){
     case 40://down
       down = true;
       break;
+  }
+  if(keyCode == UP){
+    if (jump.isPlaying()){
+      jump.pause();
+    } else if (jump.position() == jump.length()){
+        jump.rewind();
+        jump.play();
+    } else{
+        jump.play();
+    }
   }
 }
 
