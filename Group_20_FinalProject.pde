@@ -44,7 +44,7 @@ void draw(){
     //zb.display();
     zg.update();
     zg.display();
-    if(en.detectFlag()){
+    if(en.flag.detectFlag()){
       a.reset();
       //zb.reset();
       zg.reset();

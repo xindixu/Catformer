@@ -3,7 +3,7 @@ class Enivornment {
   float g;
   int w, h;
   int pfSize = 25;
-  Flag flag;
+  Flag flag,santa;
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
@@ -21,13 +21,13 @@ class Enivornment {
     
   Enivornment() {
     a = new Sprite("cat",new PVector(20,600));
-    sa = new Sprite("santa",new PVector(600,600));
     zb = new Enemy("zombie", new PVector(1000,500), a.pos);
     zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
     
     s = new Score(0);
-    flag = new Flag(new PVector(825, 420), 75);
-
+    flag = new Flag(new PVector(825, 420),50,10,"flag");
+    santa = new Flag(new PVector(300, 200),50,10,"santa");
+    
     screen = new HashMap<String,Screen>();
     button = new HashMap<String,Button>();
     scene = new HashMap<String,Scene>();     
@@ -36,13 +36,12 @@ class Enivornment {
 
   void setupEnv() {
     a.setupStates();
-    sa.setupStates();
     zb.setStates();
     zg.setStates();
     setupScreen();
     setupScene();
     generateBttn();
-    setScreen("Home");
+    setScreen("Game");
     setScene("forest");
   }
  
@@ -111,15 +110,7 @@ class Enivornment {
     }
   }
 
-  
-  boolean detectFlag(){
-    if(abs(flag.pos.x-a.pos.x) < 25 && abs(flag.pos.y-a.pos.y) < 75){
-       return true;
-    }
-    else{
-      return false;
-    }
-  }
+
   
   // screen
   Screen getScreen(String name){
@@ -227,6 +218,7 @@ class Enivornment {
       displayAllCoins();
       s.display();
       flag.display();
+      santa.display();
     }
     displayBttn();
   }

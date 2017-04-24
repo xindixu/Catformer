@@ -1,34 +1,33 @@
 class Flag{
-  
+
   PVector pos;
   int size;
   String name;
   int numFrames;
   State idle;
   
-  
   //constructor
   Flag(PVector loc, int size, int numFrames, String name){
     this.pos = loc;
     this.size = size;
-    this.idle = new State(numFrames,name);
+    this.name = name;
+    this.idle = new State(numFrames,"Idle");
+    idle.loadImg("flag/"+name+"/Idle (",").png",size);
+  }  
+     
+  boolean detectFlag(){
+    boolean re = false;
+    if(abs(pos.x-a.pos.x) < size && abs(pos.y-a.pos.y) < size){
+       re = true;
+    }else{
+      re = false;
+    }
+    return re;
   }
-  
-  void loadImg(){
-    idle.loadImg("flag/");
-  }
-  //displays the animated flag object
   void display(){
-    imageMode(CENTER);
-    image(flags[currentFrame], pos.x, pos.y);
-    imageMode(CORNER);
-    if((millis() - animationTimer) >= animationTimerValue){
-      currentFrame = (currentFrame + 1) % numFrames;
-      animationTimer = millis();
-    } 
-    //ellipse(pos.x,pos.y,10,10);
+    translate(pos.x,pos.y);
+    idle.display(false);
   }
-  
-  
-  
 }
+  
+  
