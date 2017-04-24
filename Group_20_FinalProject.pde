@@ -99,6 +99,9 @@ void draw(){
     // pause and display info
     en.getScreen("Info");
   }
+  else if(en.currentScreen == "Home"){
+    en.getScreen("Home");
+  }
   else{
     player.close();
     en.setScreen("Lose");

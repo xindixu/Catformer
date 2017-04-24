@@ -44,9 +44,8 @@ class Button{
     imageMode(CORNER);
   }
  
-  void update(PVector pos,int size){
+  void update(PVector pos){
     this.pos = pos;
-    this.size = size;
   }
   
   void detect(){
