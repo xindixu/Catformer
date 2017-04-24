@@ -10,7 +10,7 @@ class Enivornment {
   AudioPlayer coinsound;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home","Start"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
   
   HashMap<String,Screen> screen;
   String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
