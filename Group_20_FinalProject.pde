@@ -89,6 +89,7 @@ void draw(){
   }
   
   else if(en.currentScreen == "Win"){
+      player.close();
       en.getScreen("Win").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
   else if(en.currentScreen == "Pause"){
@@ -99,6 +100,7 @@ void draw(){
     en.getScreen("Info");
   }
   else{
+    player.close();
     en.setScreen("Lose");
     en.getScreen("Lose").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
