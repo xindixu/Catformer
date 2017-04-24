@@ -1,5 +1,6 @@
 import ddf.minim.*;
 //songs from http://ericskiff.com/music/
+//victory and coin sound from https://opengameart.org/content/8-bit-sound-effects-library
 //jump sfx from https://opengameart.org/content/8-bit-jump-1
 import java.util.Map;
 
@@ -83,6 +84,8 @@ void draw(){
         case "graveyard":
           en.setScreen("Win");
           player.close();
+          player = minim.loadFile("sounds/Win.mp3");
+          player.play();
           break;
       }
     }
@@ -131,14 +134,8 @@ void keyPressed(){
       break;
   }
   if(keyCode == UP){
-    if (jump.isPlaying()){
-      jump.pause();
-    } else if (jump.position() == jump.length()){
-        jump.rewind();
-        jump.play();
-    } else{
-        jump.play();
-    }
+    jump.play();
+    jump.rewind();
   }
 }
 

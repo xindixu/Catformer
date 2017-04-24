@@ -7,6 +7,7 @@ class Enivornment {
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
+  AudioPlayer coinsound;
  
   HashMap<String,Button> button;
   String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
@@ -25,6 +26,7 @@ class Enivornment {
     zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
     
     s = new Score(0);
+    coinsound = minim.loadFile("sounds/coin.mp3");
     flag = new Flag(new PVector(825, 420),50,10,"flag");
     santa = new Flag(new PVector(300, 200),50,10,"santa");
     
@@ -195,7 +197,9 @@ class Enivornment {
     for(Coins c:sc.cn){
       if(!c.got && abs(c.pos.x-a.pos.x) < 25 && abs(c.pos.y-a.pos.y) < 75){
         s.incrementScore();
+        coinsound.play();
         c.got = true;
+        coinsound.rewind();
       }
       c.display();
     }
