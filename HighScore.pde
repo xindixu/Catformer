@@ -14,6 +14,11 @@ class HighScore{
     
   }
   
+  void update(){
+    
+    
+  }
+  
   void display(){
     font = createFont("Comic Sans MS Bold", 25);
     
