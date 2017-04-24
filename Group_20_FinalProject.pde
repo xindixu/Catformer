@@ -1,8 +1,10 @@
 import ddf.minim.*;
 import java.util.Map;
+
 Sprite a;
 Enemy e;
 Score s;
+
 static Timer t;
 static PImage bg,heart;
 static PImage[] plfImg,btnImg;
