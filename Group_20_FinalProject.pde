@@ -14,7 +14,7 @@ static boolean left,right,up,down,mouse;
 Enivornment en;
 
 void setup(){
-  size(1800,750);
+  size(1600,750);
   frameRate(60);
   
   en = new Enivornment();
@@ -29,7 +29,10 @@ void draw(){
   en.detectBttn();
   en.bttnAct();
   
-  if(a.lives > 0 && en.currentScreen == "Game"){
+  if(en.currentScreen == "Home"){
+    // display home screen
+  }
+  else if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
       en.resetCoins();
     }
@@ -76,6 +79,10 @@ void draw(){
   else if(en.currentScreen == "Pause"){
     // pause
   }
+  else if(en.currentScreen == "Info"){
+    // pause and display info
+    en.getScreen("Info");
+  }
   else{
     en.setScreen("Lose");
     en.getScreen("Lose").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
@@ -99,7 +106,7 @@ void keyPressed(){
     case 39://right
       right = true;
       break;
-    case 38://up
+    case 38: //up
       up = true;
       break;
     case 40://down

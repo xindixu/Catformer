@@ -9,10 +9,10 @@ class Enivornment {
   PImage[] objImg;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
   
   HashMap<String,Screen> screen;
-  String[] screenName = {"Game","Pause","Win","Lose"};
+  String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
   String currentScreen;
   
   HashMap<String,Scene> scene;
@@ -42,7 +42,7 @@ class Enivornment {
     setupScreen();
     setupScene();
     generateBttn();
-    setScreen("Game");
+    setScreen("Home");
     setScene("forest");
   }
  
@@ -103,6 +103,11 @@ class Enivornment {
       s.resetScore();
       t.resetTime();
       a.lives = 3;
+    }
+    
+    Button info = button.get("Info");
+    if(info.status == "Clicked"){
+      setScreen("Info");
     }
   }
 
@@ -222,7 +227,6 @@ class Enivornment {
       displayAllCoins();
       s.display();
       flag.display();
-      testing();
     }
     displayBttn();
   }

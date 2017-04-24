@@ -2,24 +2,21 @@ class Flag{
   
   PVector pos;
   int size;
-  int numFrames = 10;
-  PImage[] flags = new PImage[numFrames];
-  int currentFrame = 0;
-  int animationTimer = 0;
-  int animationTimerValue = 80;
+  String name;
+  int numFrames;
+  State idle;
+  
   
   //constructor
-  Flag(PVector loc, int _s){
+  Flag(PVector loc, int size, int numFrames, String name){
     this.pos = loc;
-    this.size = _s;
-    
-    for(int i = 0; i < flags.length; i++){
-      String imageName = "flag/flag_"+nf(i+1, 2) +".png";
-      flags[i] = loadImage(imageName);
-      flags[i].resize(size+2,size);
-    }
+    this.size = size;
+    this.idle = new State(numFrames,name);
   }
   
+  void loadImg(){
+    idle.loadImg("flag/");
+  }
   //displays the animated flag object
   void display(){
     imageMode(CENTER);
