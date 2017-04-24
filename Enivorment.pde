@@ -220,7 +220,7 @@ class Enivornment {
       displayAllObj();
       s.display();
       flag.display();
-      santa.display();
+      //santa.display();
     }
     displayBttn();
   }

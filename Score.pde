@@ -1,5 +1,5 @@
 class Score{
-  int score;
+  int score,add;
   
   //constructor
   Score(int _score){
@@ -9,6 +9,9 @@ class Score{
   //increments the score when called on
   void incrementScore(){
     score ++;
+  }
+  void add(int add){
+    score += add;
   }
   
   //sets score to 0 when called on
