@@ -71,6 +71,7 @@ class Enivornment {
        String n = buttonName[i];
        Button b = button.get(n);
        b.detect();
+       print(",kkkk");
      }
   }
   

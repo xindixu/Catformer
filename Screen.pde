@@ -12,7 +12,7 @@ class Screen{
     this.pos = new ArrayList();
     this.txc = new ArrayList();
     this.txf = new ArrayList();
-    buttonPos = new PVector[4];
+    buttonPos = new PVector[8];
   }
   
   void construct(String[] text, PVector[] pos, color[] txc, PFont[] txf, PVector[] bPos){
@@ -45,9 +45,7 @@ class Screen{
   }
 }
 
-void setupScreen(){
-  
-  
+void setupScreen(){  
   //{"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
   
   String[] hText = {"Name of the game"};
@@ -64,7 +62,6 @@ void setupScreen(){
   PVector[] iBttnPos ={new PVector(-30,200),new PVector(30,250),new PVector(30,300),new PVector(-30,350),new PVector(30,400),new PVector(30,450),new PVector(30,500),new PVector(30,550)};
   
 
-  
   String[] pText = {"Pause","Click the button to resume the game."};
   PVector[] ppos = {new PVector(width/2,100),new PVector(width/2,130)};
   int[] pTxc = {color(255),color(255)};

@@ -41,7 +41,7 @@ void draw(){
   en.display();
   en.detectBttn();
   en.bttnAct();
-  
+    
   if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
       en.resetCoins();
