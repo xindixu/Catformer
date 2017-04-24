@@ -1,5 +1,10 @@
 import ddf.minim.*;
+//songs from http://ericskiff.com/music/
+//jump sfx from https://opengameart.org/content/8-bit-jump-1
 import java.util.Map;
+
+Minim minim;
+AudioPlayer player;
 
 Sprite a,sa;
 Enemy zb,zg;
@@ -14,8 +19,12 @@ static boolean left,right,up,down,mouse;
 Enivornment en;
 
 void setup(){
-  size(1800,750);
+  size(1600,750);
   frameRate(60);
+  
+  minim = new Minim(this);
+  player = minim.loadFile("sounds/Underclocked(level1).mp3");
+  player.LOOP_CONTINUOUSLY()
   
   en = new Enivornment();
   en.setupEnv();   
@@ -124,4 +133,16 @@ void keyReleased(){
       down = false;
       break;
   }
+  
+  if(key == 'm' || key == 'M'){
+    if (player.isPlaying()){
+      player.pause();
+    } else if (player.position() == player.length()){
+        player.rewind();
+        player.play();
+    } else{
+        player.play();
+    }
+  }
+  
 }
