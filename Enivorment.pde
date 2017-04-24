@@ -9,7 +9,7 @@ class Enivornment {
   PImage[] objImg;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home","Start"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
   
   HashMap<String,Screen> screen;
   String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
@@ -111,6 +111,11 @@ class Enivornment {
     Button home = button.get("Home");
     if(home.status == "Clicked"){
       setScreen("Home");
+    }
+    
+    Button start = button.get("Start");
+    if(start.status == "Clicked"){
+      setScreen("Game");
     }
   }
 

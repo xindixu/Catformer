@@ -15,14 +15,9 @@ class Button{
  
   void loadImg(String file1,String file2){
     for(int i = 0; i < 3; i++){
-      img[i] = loadImage("Button/"+file1+(i+1)+file2);
+      img[i] = loadImage("GUI/button/"+file1+(i+1)+file2);
       img[i].resize(size,size);
     }
-  }
-  
-  void resizeImg(int i, int size){
-    img[i].resize(size,size);
-    this.size = size;
   }
   
   void display(){
