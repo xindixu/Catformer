@@ -159,15 +159,4 @@ void keyReleased(){
       break;
   }
   
-  if(key == 'm' || key == 'M'){
-    if (player.isPlaying()){
-      player.pause();
-    } else if (player.position() == player.length()){
-        player.rewind();
-        player.play();
-    } else{
-        player.play();
-    }
-  }
-  
 }

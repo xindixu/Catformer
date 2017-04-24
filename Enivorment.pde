@@ -119,6 +119,15 @@ class Enivornment {
     if(start.status == "Clicked"){
       setScreen("Game");
     }
+    
+    Button music = button.get("Music");
+    if(music.status == "Clicked"){
+      if (player.isPlaying()){
+      player.pause();
+      } else{
+        player.play();
+      }
+    }
   }
 
 
