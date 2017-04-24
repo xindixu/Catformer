@@ -1,4 +1,4 @@
-// when restart, the zombie does not return to the inital position
+import ddf.minim.*;
 import java.util.Map;
 Sprite a;
 Enemy e;
@@ -7,8 +7,6 @@ static Timer t;
 static PImage bg,heart;
 static PImage[] plfImg,btnImg;
 static boolean left,right,up,down,mouse;
-
-
 
 Enivornment en;
 
