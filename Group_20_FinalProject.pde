@@ -1,5 +1,12 @@
-//import ddf.minim.*;
+import ddf.minim.*;
+//songs from http://ericskiff.com/music/
+//victory and coin sound from https://opengameart.org/content/8-bit-sound-effects-library
+//jump sfx from https://opengameart.org/content/8-bit-jump-1
 import java.util.Map;
+
+Minim minim;
+AudioPlayer player;
+AudioPlayer jump;
 
 Sprite a,sa;
 Enemy zb,zg;
@@ -17,6 +24,13 @@ void setup(){
   size(1600,750);
   frameRate(60);
   
+  minim = new Minim(this);
+  jump = minim.loadFile("sounds/Jump.wav");
+  player = minim.loadFile("sounds/Underclocked(level1).mp3");
+  player.play();
+  player.loop();
+  
+  
   en = new Enivornment();
   en.setupEnv();   
   
@@ -28,7 +42,7 @@ void draw(){
   en.display();
   en.detectBttn();
   en.bttnAct();
-  
+    
   if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
       en.resetCoins();
@@ -48,21 +62,37 @@ void draw(){
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");
+          player.close();
+          player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
+          player.play();
+          player.loop();
           break;
         case "winter":
           en.setScene("desert");
+          player.close();
+          player = minim.loadFile("sounds/Searching(level3).mp3");
+          player.play();
+          player.loop();
           break;
         case "desert":
           en.setScene("graveyard");
+          player.close();
+          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
+          player.play();
+          player.loop();
           break;
         case "graveyard":
           en.setScreen("Win");
+          player.close();
+          player = minim.loadFile("sounds/Win.mp3");
+          player.play();
           break;
       }
     }
   }
   
   else if(en.currentScreen == "Win"){
+      player.close();
       en.getScreen("Win").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
   else if(en.currentScreen == "Pause"){
@@ -72,7 +102,11 @@ void draw(){
     // pause and display info
     en.getScreen("Info");
   }
+  else if(en.currentScreen == "Home"){
+    en.getScreen("Home");
+  }
   else{
+    player.close();
     en.setScreen("Lose");
     en.getScreen("Lose").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
@@ -102,6 +136,10 @@ void keyPressed(){
       down = true;
       break;
   }
+  if(keyCode == UP){
+    jump.play();
+    jump.rewind();
+  }
 }
 
 
@@ -120,4 +158,16 @@ void keyReleased(){
       down = false;
       break;
   }
+  
+  if(key == 'm' || key == 'M'){
+    if (player.isPlaying()){
+      player.pause();
+    } else if (player.position() == player.length()){
+        player.rewind();
+        player.play();
+    } else{
+        player.play();
+    }
+  }
+  
 }

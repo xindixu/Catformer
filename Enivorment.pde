@@ -7,9 +7,10 @@ class Enivornment {
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
+  AudioPlayer coinsound;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
   
   HashMap<String,Screen> screen;
   String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
@@ -25,6 +26,7 @@ class Enivornment {
     zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
     
     s = new Score(0);
+    coinsound = minim.loadFile("sounds/coin.mp3");
     flag = new Flag(new PVector(825, 420),50,10,"flag");
     santa = new Flag(new PVector(300, 200),50,10,"santa");
     
@@ -41,7 +43,7 @@ class Enivornment {
     setupScreen();
     setupScene();
     generateBttn();
-    setScreen("Game");
+    setScreen("Home");
     setScene("forest");
   }
  
@@ -103,10 +105,15 @@ class Enivornment {
       a.lives = 3;
     }
     
-    //Button info = button.get("Info");
-    //if(info.status == "Clicked"){
-    //  setScreen("Info");
-    //}
+    Button info = button.get("Info");
+    if(info.status == "Clicked"){
+      setScreen("Info");
+    }
+    
+    Button home = button.get("Home");
+    if(home.status == "Clicked"){
+      setScreen("Home");
+    }
   }
 
 
@@ -122,7 +129,7 @@ class Enivornment {
     for(int i = 0; i < buttonName.length; i ++){
        String n = buttonName[i];
        Button b = button.get(n);
-       b.update(s.buttonPos[i],1);
+       b.update(s.buttonPos[i]);
      }
   }
   
@@ -195,7 +202,9 @@ class Enivornment {
     for(Coins c:sc.cn){
       if(!c.got && abs(c.pos.x-a.pos.x) < 25 && abs(c.pos.y-a.pos.y) < 75){
         s.incrementScore();
+        coinsound.play();
         c.got = true;
+        coinsound.rewind();
       }
       c.display();
     }
