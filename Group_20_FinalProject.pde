@@ -42,7 +42,7 @@ void draw(){
   en.display();
   en.detectBttn();
   en.bttnAct();
-  
+    
   if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
       en.resetCoins();
@@ -101,6 +101,9 @@ void draw(){
   else if(en.currentScreen == "Info"){
     // pause and display info
     en.getScreen("Info");
+  }
+  else if(en.currentScreen == "Home"){
+    en.getScreen("Home");
   }
   else{
     player.close();

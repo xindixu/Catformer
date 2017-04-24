@@ -10,7 +10,7 @@ class Enivornment {
   AudioPlayer coinsound;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home","Start"};
   
   HashMap<String,Screen> screen;
   String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
@@ -43,7 +43,7 @@ class Enivornment {
     setupScreen();
     setupScene();
     generateBttn();
-    setScreen("Game");
+    setScreen("Home");
     setScene("forest");
   }
  
@@ -105,10 +105,15 @@ class Enivornment {
       a.lives = 3;
     }
     
-    //Button info = button.get("Info");
-    //if(info.status == "Clicked"){
-    //  setScreen("Info");
-    //}
+    Button info = button.get("Info");
+    if(info.status == "Clicked"){
+      setScreen("Info");
+    }
+    
+    Button home = button.get("Home");
+    if(home.status == "Clicked"){
+      setScreen("Home");
+    }
   }
 
 
@@ -124,7 +129,7 @@ class Enivornment {
     for(int i = 0; i < buttonName.length; i ++){
        String n = buttonName[i];
        Button b = button.get(n);
-       b.update(s.buttonPos[i],1);
+       b.update(s.buttonPos[i]);
      }
   }
   
