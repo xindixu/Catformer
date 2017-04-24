@@ -4,6 +4,7 @@ abstract class Scene{
   ArrayList<Water> wtr;
   ArrayList<Coins> cn;
   ArrayList<Object> obj;
+  ArrayList<Enemy> en;
   String[] objName;
   int pfSize = 25;
   
@@ -12,8 +13,11 @@ abstract class Scene{
     this.plf = new ArrayList();
     this.wtr = new ArrayList();
     this.cn = new ArrayList();
+    this.obj = new ArrayList();
+    this.en = new ArrayList();
   }
   
+  //abstract void generateEn();
   abstract void generateObj();
   abstract void generatePlf();
   abstract void generateCn();
@@ -30,9 +34,8 @@ class Forest extends Scene{
 
    
   void generateObj(){
-    obj.add(new Object(new PVector(100,450),1));
+    obj.add(new Object(new PVector(100,200),1));
   }
-  
   
   
   void generatePlf(){
@@ -50,7 +53,7 @@ class Forest extends Scene{
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
     plf.add(new Platform_on_ground(new PVector(575,700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750,700), 50, 1));
+    plf.add(new Platform_on_ground(new PVector(750,700), 20, 1));
     
     wtr.add(new Water(new PVector(675,700),2,1));
     wtr.add(new Water(new PVector(525,700),1,1));
@@ -99,7 +102,7 @@ class Winter extends Scene{
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
     plf.add(new Platform_on_ground(new PVector(575,700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750,700), 10, 1));
+    plf.add(new Platform_on_ground(new PVector(750,700), 20, 1));
     
     wtr.add(new Water(new PVector(675,700),2,1));
     wtr.add(new Water(new PVector(525,700),1,1));
@@ -149,7 +152,7 @@ class Desert extends Scene{
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
     plf.add(new Platform_on_ground(new PVector(575,700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750,700), 10, 1));
+    plf.add(new Platform_on_ground(new PVector(750,700), 20, 1));
     
     wtr.add(new Water(new PVector(675,700),2,1));
     wtr.add(new Water(new PVector(525,700),1,1));
@@ -197,7 +200,7 @@ class Graveyard extends Scene{
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
     plf.add(new Platform_on_ground(new PVector(575,700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750,700), 10, 1));
+    plf.add(new Platform_on_ground(new PVector(750,700), 20, 1));
     
     wtr.add(new Water(new PVector(675,700),2,1));
     wtr.add(new Water(new PVector(525,700),1,1));

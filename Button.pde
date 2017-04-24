@@ -17,7 +17,13 @@ class Button{
     for(int i = 0; i < 3; i++){
       img[i] = loadImage("Button/"+file1+(i+1)+file2);
       img[i].resize(50,50);
+      size = 50;
     }
+  }
+  
+  void resizeImg(int i, int size){
+    img[i].resize(size,size);
+    this.size = size;
   }
   
   void display(){
@@ -27,6 +33,7 @@ class Button{
     }  
     if(status == "Hover"){
       image(img[1],pos.x,pos.y);
+      fill(0);
       textSize(11);
       text(name,pos.x+15,pos.y-10);
     }  
@@ -44,7 +51,7 @@ class Button{
   }
   
   void detect(){
-    if(abs(mouseX-pos.x) < 25 && abs(mouseY-pos.y) < 25){
+    if(abs(mouseX-pos.x) < size/2 && abs(mouseY-pos.y) < size/2){
       status = "Hover";
       if(mouse){
         status = "Clicked";

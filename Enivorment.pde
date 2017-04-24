@@ -3,16 +3,16 @@ class Enivornment {
   float g;
   int w, h;
   int pfSize = 25;
-  Flag flag;
+  Flag flag,santa;
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
  
   HashMap<String,Button> button;
-  String[] buttonName = {"Start","Restart","Resume","Pause","Quit"};
+  String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info"};
   
   HashMap<String,Screen> screen;
-  String[] screenName = {"Game","Pause","Win","Lose"};
+  String[] screenName = {"Game","Pause","Win","Lose","Info","Home"};
   String currentScreen;
   
   HashMap<String,Scene> scene;
@@ -21,13 +21,13 @@ class Enivornment {
     
   Enivornment() {
     a = new Sprite("cat",new PVector(20,600));
-    sa = new Sprite("santa",new PVector(600,600));
     zb = new Enemy("zombie", new PVector(1000,500), a.pos);
     zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
     
     s = new Score(0);
-    flag = new Flag(new PVector(825, 420), 75);
-
+    flag = new Flag(new PVector(825, 420),50,10,"flag");
+    santa = new Flag(new PVector(300, 200),50,10,"santa");
+    
     screen = new HashMap<String,Screen>();
     button = new HashMap<String,Button>();
     scene = new HashMap<String,Scene>();     
@@ -36,7 +36,6 @@ class Enivornment {
 
   void setupEnv() {
     a.setupStates();
-    sa.setupStates();
     zb.setStates();
     zg.setStates();
     setupScreen();
@@ -96,7 +95,6 @@ class Enivornment {
       setScreen("Game");
       setScene("forest");
       a.reset();
-      sa.reset();
       zb.reset();
       zg.reset();
       resetCoins();
@@ -104,17 +102,14 @@ class Enivornment {
       t.resetTime();
       a.lives = 3;
     }
+    
+    //Button info = button.get("Info");
+    //if(info.status == "Clicked"){
+    //  setScreen("Info");
+    //}
   }
 
-  
-  boolean detectFlag(){
-    if(abs(flag.pos.x-a.pos.x) < 25 && abs(flag.pos.y-a.pos.y) < 75){
-       return true;
-    }
-    else{
-      return false;
-    }
-  }
+
   
   // screen
   Screen getScreen(String name){
@@ -167,7 +162,6 @@ class Enivornment {
       p.display();
       p.generateBoundaries();      
       detectCollision(a, p);
-      detectCollision(sa, p);
       detectCollision(zb, p);
       detectCollision(zg, p);
     }
@@ -176,9 +170,6 @@ class Enivornment {
       w.generateBoundaries();      
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
-        sa.changeState("Dead");
-        print(a.currentState);
-        print(sa.currentState);
       }
       if(detectEdge(zb,w) && zb.goRight){
         zb.goRight = false;
@@ -191,7 +182,13 @@ class Enivornment {
       }
     }
   }
-  
+  // obj
+  void displayAllObj(){
+    Scene sc = getScene(currentScene);
+    for(Object o:sc.obj){
+      o.display();
+    }
+  }
   // coin
   void displayAllCoins(){
     Scene sc = getScene(currentScene);
@@ -220,9 +217,10 @@ class Enivornment {
     if(currentScreen == "Game"){
       displayAllPlf();
       displayAllCoins();
+      displayAllObj();
       s.display();
       flag.display();
-      testing();
+      santa.display();
     }
     displayBttn();
   }

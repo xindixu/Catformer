@@ -50,7 +50,7 @@ void draw(){
     //zb.display();
     zg.update();
     zg.display();
-    if(en.detectFlag()){
+    if(en.flag.detectFlag()){
       a.reset();
       //zb.reset();
       zg.reset();
@@ -69,14 +69,6 @@ void draw(){
           break;
       }
     }
-    if(en.currentScene == "graveyard"){
-      zb.update();
-      zb.display();
-    }
-    if(en.currentScene == "winter"){
-      sa.update();
-      sa.display();
-    }
   }
   
   else if(en.currentScreen == "Win"){
@@ -84,6 +76,10 @@ void draw(){
   }
   else if(en.currentScreen == "Pause"){
     // pause
+  }
+  else if(en.currentScreen == "Info"){
+    // pause and display info
+    en.getScreen("Info");
   }
   else{
     en.setScreen("Lose");
@@ -108,7 +104,7 @@ void keyPressed(){
     case 39://right
       right = true;
       break;
-    case 38://up
+    case 38: //up
       up = true;
       break;
     case 40://down
