@@ -8,6 +8,7 @@ class Enivornment {
   PImage[] plfImg;
   PImage[] objImg;
   AudioPlayer coinsound;
+  AudioPlayer player;
  
   HashMap<String,Button> button;
   String[] buttonName = {"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
@@ -105,6 +106,9 @@ class Enivornment {
       s.resetScore();
       t.resetTime();
       a.lives = 3;
+      player = minim.loadFile("sounds/Underclocked(level1).mp3");
+      player.play();
+      player.loop();
     }
     
     Button info = button.get("Info");
