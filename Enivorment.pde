@@ -24,6 +24,7 @@ class Enivornment {
     a = new Sprite("cat",new PVector(20,600));
     zb = new Enemy("zombie", new PVector(1000,500), a.pos);
     zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
+    j = new Enemy("jack", new PVector(1000,1000), a.pos);
     
     s = new Score(0);
     coinsound = minim.loadFile("sounds/coin.mp3");
@@ -40,6 +41,7 @@ class Enivornment {
     a.setupStates();
     zb.setStates();
     zg.setStates();
+    j.setStates();
     setupScreen();
     setupScene();
     generateBttn();
@@ -185,6 +187,7 @@ class Enivornment {
       detectCollision(a, p);
       detectCollision(zb, p);
       detectCollision(zg, p);
+      detectCollision(j, p);
     }
     for (Water w : sc.wtr) {
       w.display();
@@ -192,18 +195,19 @@ class Enivornment {
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
       }
+      if(detectEdge(zg,w) && !zg.currentState.equals("Dead")){
+        zg.changeState("Dead");
+        zg.goRight = true;
+      }
       if(detectEdge(zb,w) && zb.goRight){
         zb.goRight = false;
       }
       if(detectEdge(zb,w) && zb.goRight == false){
-        zb.goRight = true; 
-      }
-      if(detectEdge(zg,w) && zg.goRight){
-        zg.goRight = false;
+        zb.goRight = true;
       }
     }
   }
-  // obj
+    
   void displayAllObj(){
     Scene sc = getScene(currentScene);
     for(Object o:sc.obj){

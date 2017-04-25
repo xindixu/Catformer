@@ -87,6 +87,14 @@ class Enemy{
        reset();
        }
      }
+     if(currentState.equals("Jump")){
+      vel.set(vel.x,-5);
+      ground = false;
+      if(getState("Jump").end){
+        accel.set(0,-1);
+        vel.set(0,-1);
+      }
+     }
    }
    
    void chase(float Ledge, float Redge, PVector target){
@@ -113,20 +121,24 @@ class Enemy{
        a.changeState("Dead");
        reset();
      }
-     if(((bodyp.y - target.y) <= 30) && (abs(bodyp.x - target.x) <= 20)){
+     if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)){
        changeState("Dead");
-       s.add(30);
+       s.add(20);
        reset();
      }
    }
+   void jump(){
+     accel.set(0,0);
+     vel.set(0,0);
+     changeState("Jump");
+   }
    
- 
-  void reset(){
-    changeState("Walk");
-    attacked = false;
-    pos.set(start.x,start.y);
-    goRight = false;
-  }
+   void reset(){
+     changeState("Walk");
+     attacked = false;
+     pos.set(start.x,start.y);
+     goRight = false;
+   }
      
   void updateBodyPos(){
     leftp.set(pos.x-size/4,pos.y-size/2);

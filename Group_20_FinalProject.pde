@@ -11,8 +11,8 @@ AudioPlayer jump;
 XML xml;
 HighScore highscore;
 
-Sprite a,sa;
-Enemy zb,zg;
+Sprite a;
+Enemy zb,zg,j;
 
 Score s;
 
@@ -56,13 +56,13 @@ void draw(){
     t.display();
     a.update();
     a.display();
-    //zb.update();
-    //zb.display();
     zg.update();
     zg.display();
+    j.update();
+    j.display();
+    j.jump();
     if(en.flag.detectFlag()){
       a.reset();
-      //zb.reset();
       zg.reset();
       switch(en.currentScene){
         case "forest":
