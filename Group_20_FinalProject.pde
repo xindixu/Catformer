@@ -8,7 +8,7 @@ Minim minim;
 AudioPlayer player;
 AudioPlayer jump;
 
-XML xml = loadXML("score/highscores.xml");
+XML xml;
 HighScore highscore;
 
 Sprite a,sa;
@@ -33,6 +33,7 @@ void setup(){
   player.play();
   player.loop();
   
+  xml = loadXML("score/highscores.xml");
   highscore = new HighScore(xml);
   
   en = new Enivornment();
