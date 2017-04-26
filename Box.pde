@@ -34,14 +34,14 @@ class Box {
       pushMatrix();
       translate(pos.x, pos.y);
       image(img, 0, 0);
-      text(info, pos.x, pos.y, w, h);
+      text(info, pos.x-50, pos.y, w, h);
       popMatrix();
       close.display();
       close.detect();
     }
     if (close.status == "Clicked") {
       on = false;
-      en.setScreen("Game");
+      en.setScreen(en.currentScreen);
     }
   }
 }

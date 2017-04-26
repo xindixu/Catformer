@@ -23,7 +23,7 @@ class GUI {
 
 
   void generateBoxes() {
-    String s = "How to play? xxxxxxxxxxxxxxxxxxxxxxx";
+    String s = "How to play: xxxxxxxxxxxxxxxxxxxxxxx";
     Box info = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
     en.box.put("Info", info);
   }
@@ -79,7 +79,7 @@ class GUI {
 
     Button info = en.button.get("Info");
     if (info.status == "Clicked") {
-      en.setScreen("Pause");
+      en.setScreen("Home");
       Box infob = en.box.get("Info");
       infob.on = true;
     }
