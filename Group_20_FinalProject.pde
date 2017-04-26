@@ -5,7 +5,7 @@ import ddf.minim.*;
 import java.util.Map;
 
 Minim minim;
-AudioPlayer jump;
+AudioPlayer jumpsound;
 
 XML xml;
 HighScore highscore;
@@ -27,7 +27,7 @@ void setup(){
   frameRate(60);
   
   minim = new Minim(this);
-  jump = minim.loadFile("sounds/Jump.wav");
+  jumpsound = minim.loadFile("sounds/Jump.wav");
   
   xml = loadXML("score/highscores.xml");
   highscore = new HighScore(xml);
@@ -127,8 +127,8 @@ void keyPressed(){
       break;
   }
   if(keyCode == UP){
-    jump.play();
-    jump.rewind();
+    jumpsound.play();
+    jumpsound.rewind();
   }
 }
 
