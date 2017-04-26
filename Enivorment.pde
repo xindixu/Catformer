@@ -28,8 +28,8 @@ class Enivornment {
 
     a = new Sprite("cat",new PVector(20,600));
     
-    flag = new Flag(new PVector(825, 420), 50, 10, "flag");
-    santa = new Flag(new PVector(300, 200), 50, 10, "santa");
+    flag = new Flag(new PVector(1450, 105), 50, 10, "flag");
+    santa = new Flag(new PVector(-300, 200), 50, 10, "santa");
 
     coinsound = minim.loadFile("sounds/coin.mp3");
 
