@@ -113,24 +113,35 @@ class Enemy{
        a.changeState("Dead");
        reset();
      }
-     if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)){
+     if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20) && !a.currentState.equals("Dead")){
        changeState("Dead");
        s.add(20);
        reset();
      }
    }
    
-   void jump(){
-     changeState("Jump");
+   void goJ(){
+     if(currentState.equals("Jump")){
+       vel.set(0,-5);
+       ground = false;
+     }
      if(getState("Jump").end){
        changeState("Idle");
-       pos.set(start);
-       vel.set(0,0);
      }
-     if(getState("Idle").end){
-       changeState("Jump");
-       //vel.set(0,-1);
+     if(currentState.equals("Idle")){
+      accel.set(0,0);
+      ground = true;
      }
+     if(currentState.equals("Dead")){
+       if(getState("Dead").end){
+         pos.set(start);
+         changeState("Jump");
+       }
+     }
+   }
+   
+   void jump(){
+     changeState("Jump");
      if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30){
        changeState("Idle");
        a.changeState("Dead");
@@ -184,7 +195,6 @@ class Enemy{
     println(collisionSide);
   }
   
-  
   void display(){
     State temp = getState(currentState);
     if(goRight){
@@ -200,5 +210,34 @@ class Enemy{
       temp.display(true);
       popMatrix();
     }
+  }
+  void updateJ(){
+      goJ();
+      IsGround();
+      updateBodyPos();
+  
+      // apply friction & gravity
+      if(ground){
+        vel.set(vel.x*f,vel.y);
+      }
+      else{
+        vel.set(vel.x*f,vel.y+g);
+      }
+  
+      vel.add(accel);
+      vel.set(constrain(vel.x,-5,5),constrain(vel.y,-10,10));
+      
+      pos.add(vel);
+      pos.set(constrain(pos.x,0,width),constrain(pos.y,0,height));
+    
+  }
+  
+  void displayJ(){
+    State temp = getState(currentState);
+    pushMatrix();
+    translate(0,pos.y-size);
+    scale(-1,1);
+    temp.display(true);
+    popMatrix();
   }
 }

@@ -56,8 +56,8 @@ void draw(){
     a.display();
     zg.update();
     zg.display();
-    j.update();
-    j.display();
+    j.updateJ();
+    j.displayJ();
     j.jump();
     if(en.flag.detectFlag()){
       a.reset();
