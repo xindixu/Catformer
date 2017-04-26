@@ -17,10 +17,10 @@ abstract class Scene {
     this.en = new ArrayList();
   }
 
-  //abstract void generateEn();
   abstract void generateObj();
   abstract void generatePlf();
   abstract void generateCn();
+  abstract void generateEn();
 }
 
 class Forest extends Scene {
@@ -70,6 +70,16 @@ class Forest extends Scene {
       cn.add(new Coins(new PVector(500+50*i, 525), 15));
     }
   }
+  
+  void generateEn(){
+    en.add(new Enemy("zombie", new PVector(1000,500), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
+    en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
+    
+    for(Enemy e:en){
+      e.setStates();
+    }
+  }
 }
 
 class Winter extends Scene {
@@ -116,6 +126,16 @@ class Winter extends Scene {
       cn.add(new Coins(new PVector(100+50*i, 475), 15));
       cn.add(new Coins(new PVector(300+50*i, 125), 15));
       cn.add(new Coins(new PVector(500+50*i, 525), 15));
+    }
+  }
+  
+  void generateEn(){
+    en.add(new Enemy("zombie", new PVector(1000,500), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
+    en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
+    
+    for(Enemy e:en){
+      e.setStates();
     }
   }
 }
@@ -168,6 +188,16 @@ class Desert extends Scene {
       cn.add(new Coins(new PVector(500+50*i, 525), 15));
     }
   }
+  
+  void generateEn(){
+    en.add(new Enemy("zombie", new PVector(1500,500), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(200,500), a.pos));
+    en.add(new Enemy("jack", new PVector(60,1000), a.pos));
+    
+    for(Enemy e:en){
+      e.setStates();
+    }
+  }
 }
 
 class Graveyard extends Scene {
@@ -216,6 +246,16 @@ class Graveyard extends Scene {
       cn.add(new Coins(new PVector(500+50*i, 525), 15));
     }
   }
+  
+  void generateEn(){
+    en.add(new Enemy("zombie", new PVector(900,500), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
+    en.add(new Enemy("jack", new PVector(800,1000), a.pos));
+    
+    for(Enemy e:en){
+      e.setStates();
+    }
+  }
 }
 
 void setupScene() {
@@ -232,5 +272,6 @@ void setupScene() {
   for (Scene sc : en.scene.values()) {
     sc.generatePlf();
     sc.generateCn();
+    sc.generateEn();
   }
 }

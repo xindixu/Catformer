@@ -7,6 +7,7 @@ class Box {
   boolean on;
   Button close;
 
+
   Box(String name, int w, int h, String info, PVector pos) {
     this.name = name;
     this.w = w;

@@ -27,9 +27,6 @@ class Enivornment {
   Enivornment() {
 
     a = new Sprite("cat",new PVector(20,600));
-    zb = new Enemy("zombie", new PVector(1000,500), a.pos);
-    zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
-    j = new Enemy("jack", new PVector(1000,1000), a.pos);
     
     flag = new Flag(new PVector(825, 420), 50, 10, "flag");
     santa = new Flag(new PVector(300, 200), 50, 10, "santa");
@@ -45,9 +42,6 @@ class Enivornment {
 
   void setupEnv() {
     a.setupStates();
-    zb.setStates();
-    zg.setStates();
-    j.setStates();
     setupScreen();
     setupScene();
 
@@ -141,7 +135,13 @@ class Enivornment {
     }
   }
 
-
+  void displayAllEn(){
+    Scene sc = getScene(currentScene);
+    for (Enemy e:sc.en) {
+      e.display();
+      e.update();
+    }
+  }
 
   // platforms
   void displayAllPlf() {
@@ -150,27 +150,29 @@ class Enivornment {
       p.display();
       p.generateBoundaries();      
       detectCollision(a, p);
-      detectCollision(zb, p);
-      detectCollision(zg, p);
-      detectCollision(j, p);
+      for(Enemy e:sc.en){
+        detectCollision(e, p);
+      }
     }
     for (Water w : sc.wtr) {
       w.display();
       w.generateBoundaries(); 
       
-      // enemy
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
       }
-      if(detectEdge(zg,w) && !a.currentState.equals("Dead")){
-        zg.changeState("Dead");
-        zg.goRight = true;
-      }
-      if(detectEdge(zb,w) && zb.goRight){
-        zb.goRight = false;
-      }
-      if(detectEdge(zb,w) && !zb.goRight){
-        zb.goRight = true;
+      
+      for(Enemy e:sc.en){
+        if(detectEdge(e,w) && !e.currentState.equals("Dead")){
+          e.changeState("Dead");
+          e.goRight = true;
+        }
+        if(detectEdge(e,w) && e.goRight){
+          e.goRight = false;
+        }
+        if(detectEdge(e,w) && !e.goRight){
+          e.goRight = true;
+        }
       }
     }
   }
@@ -218,6 +220,7 @@ class Enivornment {
       displayAllPlf();
       displayAllCoins();
       displayAllObj();
+      displayAllEn();
       flag.display();
       santa.display();
     }

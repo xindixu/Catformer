@@ -7,8 +7,7 @@ import java.util.Map;
 Minim minim;
 AudioPlayer jumpsound;
 
-Sprite a, sa;
-Enemy zb, zg,j;
+Sprite a;
 
 XML xml;
 HighScore highscore;
@@ -58,15 +57,10 @@ void draw() {
     t.display();
     a.update();
     a.display();
-    zg.update();
-    zg.display();
-    j.update();
-    j.display();
-    j.jump();
+   
   
     if(en.flag.detectFlag()){
       a.reset();
-      zg.reset();
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");

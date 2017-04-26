@@ -69,8 +69,6 @@ class GUI {
       en.setScreen("Game");
       en.setScene("forest");
       a.reset();
-      zb.reset();
-      zg.reset();
       en.resetCoins();
       s.resetScore();
       t.resetTime();
