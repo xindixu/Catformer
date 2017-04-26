@@ -57,7 +57,7 @@ void setupScreen() {
   PVector[] ppos = {new PVector(width/2, 100), new PVector(width/2, 130)};
   int[] pTxc = {color(255), color(255)};
   PFont[] pTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20)};
-  PVector[] pBttnPos ={new PVector(-30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(30, 300), new PVector(-30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
+  PVector[] pBttnPos ={new PVector(-30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
 
 
   String[] gText = {"Score:", "Life:"};

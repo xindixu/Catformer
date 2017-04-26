@@ -10,7 +10,6 @@ AudioPlayer jump;
 
 Sprite a, sa;
 Enemy zb, zg;
-
 static Score s;
 static Timer t;
 static GUI gui;
