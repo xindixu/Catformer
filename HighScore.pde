@@ -1,11 +1,5 @@
-class HighScore{
-  
-  HighScore(){
-    
-    
+class HighScore {
+
+  HighScore() {
   }
-  
-  
-  
-  
 }
