@@ -1,3 +1,4 @@
+
 class Enemy{
    String name;
    String[] stateName = {"Attack", "Walk", "Dead", "Jump", "Idle"};
@@ -169,44 +170,42 @@ class Enemy{
     bodyp.set(pos.x,pos.y-size/2);
   }
 
-  
-  void update(){
+
+  void update() {
     chase(0.0, 750.0, target);
     GO();
     IsGround();
     updateBodyPos();
 
     // apply friction & gravity
-    if(ground){
-      vel.set(vel.x*f,vel.y);
-    }
-    else{
-      vel.set(vel.x*f,vel.y+g);
+    if (ground) {
+      vel.set(vel.x*f, vel.y);
+    } else {
+      vel.set(vel.x*f, vel.y+g);
     }
 
     vel.add(accel);
-    vel.set(constrain(vel.x,-2.5,2.5),constrain(vel.y,-5,10));
-    
+    vel.set(constrain(vel.x, -2.5, 2.5), constrain(vel.y, -5, 10));
+
     pos.add(vel);
-    pos.set(constrain(pos.x,0,width),constrain(pos.y,0,height));
-    
-        
+    pos.set(constrain(pos.x, 0, width), constrain(pos.y, 0, height));
+
+
     print(ground);
     println(collisionSide);
   }
   
-  void display(){
+  void display() {
     State temp = getState(currentState);
-    if(goRight){
+    if (goRight) {
       pushMatrix();
-      translate(pos.x-size/2,pos.y-size);
+      translate(pos.x-size/2, pos.y-size);
       temp.display(false);
       popMatrix();
-    }
-    else{     
+    } else {     
       pushMatrix();
-      translate(pos.x-size/2,pos.y-size);
-      scale(-1,1);
+      translate(pos.x-size/2, pos.y-size);
+      scale(-1, 1);
       temp.display(true);
       popMatrix();
     }

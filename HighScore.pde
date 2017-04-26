@@ -93,9 +93,6 @@ class HighScore{
       text(score, 200, y);
       
       y += 60;
-    }
-    
+    } 
   }
-  
-  
 }

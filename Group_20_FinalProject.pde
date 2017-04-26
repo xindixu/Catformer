@@ -1,67 +1,64 @@
-import ddf.minim.*;
 //songs from http://ericskiff.com/music/
 //victory and coin sound from https://opengameart.org/content/8-bit-sound-effects-library
 //jump sfx from https://opengameart.org/content/8-bit-jump-1
+import ddf.minim.*;
 import java.util.Map;
 
 Minim minim;
 AudioPlayer jumpsound;
 
+Sprite a;
+
 XML xml;
 HighScore highscore;
 
-Sprite a;
-Enemy zb,zg,j;
-
-Score s;
-
+static Score s;
 static Timer t;
-static PImage bg,heart;
-static PImage[] plfImg,btnImg;
-static boolean left,right,up,down,mouse;
+static GUI gui;
+static PImage bg, heart;
+static PImage[] plfImg, btnImg;
+static boolean left, right, up, down, mouse;
 
 Enivornment en;
 
-void setup(){
-  size(1600,750);
+void setup() {
+  size(1600, 750);
   frameRate(60);
-  
+
   minim = new Minim(this);
+
   jumpsound = minim.loadFile("sounds/Jump.wav");
   
   xml = loadXML("score/highscores.xml");
   highscore = new HighScore(xml);
   
   en = new Enivornment();
+  gui = new GUI();
+  gui.setupGUI();
   en.setupEnv();   
+
   en.music();
   
-  t = new Timer();
   left = false; right = false; up = false; down = false;
 }
 
-void draw(){
+void draw() {
   en.display();
-  en.detectBttn();
-  en.bttnAct();
   
-    
-  if(a.lives > 0 && en.currentScreen == "Game"){
-    if(a.currentState == "Dead"){
+  gui.detectBttn();
+  gui.bttnAct();
+  gui.display();
+
+  if (a.lives > 0 && en.currentScreen == "Game") {
+    if (a.currentState == "Dead") {
       en.resetCoins();
     }
     t.update();
     t.display();
     a.update();
     a.display();
-    zg.update();
-    zg.display();
-    j.updateJ();
-    j.displayJ();
-    j.jump();
     if(en.flag.detectFlag()){
       a.reset();
-      zg.reset();
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");
@@ -88,65 +85,60 @@ void draw(){
   }
   else if(en.currentScreen == "Pause"){
     // pause
-  }
-  else if(en.currentScreen == "Info"){
+  } else if (en.currentScreen == "Info") {
     // pause and display info
     en.getScreen("Info");
-  }
-  else if(en.currentScreen == "Home"){
+  } else if (en.currentScreen == "Home") {
     en.getScreen("Home");
-  }
+  } 
   else{
     en.setScreen("Lose");
-    en.getScreen("Lose").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
+    en.getScreen("Lose").updateText(2, str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
-  
 }
 
 
-void mousePressed(){
+void mousePressed() {
   mouse = true;
 }
-void mouseReleased(){
+void mouseReleased() {
   mouse = false;
 }
 
-void keyPressed(){
-  switch (keyCode){
-    case 37://left
-      left = true;
-      break;
-    case 39://right
-      right = true;
-      break;
-    case 38: //up
-      up = true;
-      break;
-    case 40://down
-      down = true;
-      break;
-  }
-  if(keyCode == UP){
+void keyPressed() {
+  switch (keyCode) {
+  case 37://left
+    left = true;
+    break;
+  case 39://right
+    right = true;
+    break;
+  case 38: //up
+    up = true;
     jumpsound.play();
     jumpsound.rewind();
+    break;
+  case 40://down
+    down = true;
+    break;
   }
+
 }
 
 
-void keyReleased(){
-  switch (keyCode){
-    case 37://left
-      left = false;
-      break;
-    case 39://right
-      right = false;
-      break;
-    case 38://up
-      up = false;
-      break;
-    case 40://down
-      down = false;
-      break;
+void keyReleased() {
+  switch (keyCode) {
+  case 37://left
+    left = false;
+    break;
+  case 39://right
+    right = false;
+    break;
+  case 38://up
+    up = false;
+    break;
+  case 40://down
+    down = false;
+    break;
   }
-  
 }
