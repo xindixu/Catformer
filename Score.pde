@@ -24,6 +24,7 @@ class Score {
   void display() {
     strokeWeight(4);
     fill(0);
-    text(score, 80, 20);
+    textSize(20);
+    text("Score: "+score, 30, 40);
   }
 }

@@ -45,13 +45,13 @@ class Screen {
 }
 
 void setupScreen() {  
-  //{"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
+  //{"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};
   //{"Game","Pause","Win","Lose","Home"};
   String[] hText = {"Name of the game"};
   PVector[] hpos = {new PVector(width/2, 100)};
-  int[] hTxc = {color(255), color(255)};
+  int[] hTxc = {color(0), color(0)};
   PFont[] hTxf = {createFont("Comic Sans MS Bold", 32)};
-  PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(-30, 600)};
+  PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(-30, 550), new PVector(-30, 600)};
 
   String[] pText = {"Pause", "Click the button to resume the game."};
   PVector[] ppos = {new PVector(width/2, 100), new PVector(width/2, 130)};
@@ -60,11 +60,11 @@ void setupScreen() {
   PVector[] pBttnPos ={new PVector(-30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
 
 
-  String[] gText = {"Score:", "Life:"};
+  String[] gText = {" "," "};
   PVector[] gpos = {new PVector(10, 20), new PVector(10, 40)};
   int[] gTxc = {color(255), color(255)};
   PFont[] gTxf = {createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
-  PVector[] gBttnPos = {new PVector(-30, 150), new PVector(30, 200), new PVector(-30, 250), new PVector(30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
+  PVector[] gBttnPos = {new PVector(-30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(-30, 500), new PVector(-30, 550), new PVector(-30, 600)};
 
 
   String[] wText = {"Congrats!", "Your score:", ""};

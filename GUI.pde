@@ -1,10 +1,12 @@
 class GUI {
   ArrayList<Button> bt;
   ArrayList<Box> bx;
-
+  PImage wood;
   GUI() {
     this.bt = new ArrayList();
     this.bx = new ArrayList();
+    wood = loadImage("GUI/wood.png");
+    wood.resize(250,120);
   }
 
   void setupGUI() {
@@ -15,8 +17,14 @@ class GUI {
   }
 
   void display() {
+    image(wood,0,0);
     t.display();
     s.display();
+    text("Life: ",30,60);
+     // display lives
+    for (int i = 0; i < a.lives; i ++) {
+      image(heart, 80+20*i, 50);
+    }
     displayBttn(); 
     displayBox();
   }
@@ -26,6 +34,12 @@ class GUI {
     String s = "How to play: xxxxxxxxxxxxxxxxxxxxxxx";
     Box info = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
     en.box.put("Info", info);
+    
+    //Box menu = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
+    //en.box.put("Menu", menu);
+    
+    //menu.setButtons();
+    
   }
 
   void generateButtons() {

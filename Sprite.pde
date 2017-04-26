@@ -186,11 +186,5 @@ class Sprite {
     //ellipse(rhp.x,rhp.y,10,10);
     //ellipse(hp.x,hp.y,10,10);
     //ellipse(bp.x,bp.y,10,10);
-
-
-    // display lives
-    for (int i = 0; i < lives; i ++) {
-      image(heart, 60+20*i, 30);
-    }
   }
 }

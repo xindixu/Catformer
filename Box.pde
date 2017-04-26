@@ -27,7 +27,15 @@ class Box {
       on = false;
     }
   }
-
+  
+  void setButtons(String[] bttn, PVector[] pos){
+    //int i = 0;
+    //for(String str: bttn){
+    //  gui.bt.get
+    //  b.update(pos[i]);
+    //  i++;
+    //}
+  }
 
 
   void display() {
@@ -39,6 +47,9 @@ class Box {
       popMatrix();
       close.display();
       close.detect();
+      //for(Button b: bttn){
+      //  b.display();
+      //}
     }
     if (close.status == "Clicked") {
       on = false;
