@@ -1,7 +1,7 @@
-import ddf.minim.*;
 //songs from http://ericskiff.com/music/
 //victory and coin sound from https://opengameart.org/content/8-bit-sound-effects-library
 //jump sfx from https://opengameart.org/content/8-bit-jump-1
+import ddf.minim.*;
 import java.util.Map;
 
 Minim minim;
