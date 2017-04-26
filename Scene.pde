@@ -38,24 +38,24 @@ class Forest extends Scene {
 
 
   void generatePlf() {
-    plf.add(new Platform_on_ground(new PVector(100, 500), 2, 1));
-    plf.add(new Platform_on_ground(new PVector(100, 250), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(1350, 150), 5, 2));
+    plf.add(new Platform_on_ground(new PVector(850, 150), 4, 1));
 
-    plf.add(new Platform_on_ground(new PVector(300, 400), 5, 2));
-    plf.add(new Platform_on_ground(new PVector(300, 150), 4, 1));
-
-    plf.add(new Platform_on_ground(new PVector(500, 250), 4, 1));
-    plf.add(new Platform_on_ground(new PVector(500, 550), 4, 1));
-    plf.add(new Platform_on_ground(new PVector(600, 400), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(700, 450), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(400, 150), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(200, 400), 10, 1));
+    
+    plf.add(new Platform_on_ground(new PVector(650, 350), 3, 1));
+    plf.add(new Platform_on_ground(new PVector(750, 400), 6, 1));
+    
+    plf.add(new Platform_on_ground(new PVector(800, 600), 4, 4));
+    plf.add(new Platform_on_ground(new PVector(1075, 500), 10, 1));
 
     // ground
-    plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
-    plf.add(new Platform_on_ground(new PVector(575, 700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750, 700), 20, 1));
+    plf.add(new Platform_on_ground(new PVector(0, 700), 27, 1));
+    plf.add(new Platform_on_ground(new PVector(800, 700), 4, 1));
 
-    wtr.add(new Water(new PVector(675, 700), 2, 1));
-    wtr.add(new Water(new PVector(525, 700), 1, 1));
+    wtr.add(new Water(new PVector(700, 700), 3, 1));
+    wtr.add(new Water(new PVector(925, 700), 27, 1));
   }
 
   void generateCn() {
@@ -64,17 +64,17 @@ class Forest extends Scene {
     }
 
     for (int i = 0; i < 3; i++) {
-      cn.add(new Coins(new PVector(100+50*i, 225), 15));
-      cn.add(new Coins(new PVector(100+50*i, 475), 15));
-      cn.add(new Coins(new PVector(300+50*i, 125), 15));
-      cn.add(new Coins(new PVector(500+50*i, 525), 15));
+      cn.add(new Coins(new PVector(800+50*i, 575), 15));
+      cn.add(new Coins(new PVector(300+50*i, 375), 15));
+      cn.add(new Coins(new PVector(425+50*i, 125), 15));
+      cn.add(new Coins(new PVector(1125+50*i, 475), 15));
     }
   }
   
   void generateEn(){
-    en.add(new Enemy("zombie", new PVector(1000,500), a.pos));
-    en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
-    en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
+    en.add(new Enemy("zombie", new PVector(1350,450), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(600,650), a.pos));
+    //en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
     
     for(Enemy e:en){
       e.setStates();

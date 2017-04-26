@@ -194,7 +194,7 @@ class Enivornment {
   void displayAllCoins() {
     Scene sc = getScene(currentScene);
     for (Coins c : sc.cn) {
-      if (!c.got && abs(c.pos.x-a.pos.x) < 25 && abs(c.pos.y-a.pos.y) < 30) {
+      if (!c.got && abs(c.pos.x-a.pos.x) < 25 && abs(c.pos.y-a.pos.y) < 75) {
         s.incrementScore();
         coinsound.play();
         c.got = true;

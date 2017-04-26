@@ -24,7 +24,7 @@ class Sprite {
     this.rhp = new PVector();
     this.hp = new PVector();
     this.bp = new PVector();
-    this.f = 0.96;
+    this.f = 0.8;
     this.g = 0.3;
     this.onland = false;
     this.headRight = false;
