@@ -23,7 +23,7 @@ class GUI {
 
 
   void generateBoxes() {
-    String s = "..................";
+    String s = "How to play? xxxxxxxxxxxxxxxxxxxxxxx";
     Box info = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
     en.box.put("Info", info);
   }
@@ -93,6 +93,19 @@ class GUI {
     if (start.status == "Clicked") {
       en.setScreen("Game");
     }
+    
+    Button music = en.button.get("Music");
+    if (music.status == "Clicked" && en.player.isPlaying()) {
+      en.player.pause();
+      music.status = "Normal";
+    }
+    if (music.status == "Clicked" && !en.player.isPlaying()) {
+      en.player.play();
+      music.status = "Normal";
+    }
+    
+    
+    
   }
 
 

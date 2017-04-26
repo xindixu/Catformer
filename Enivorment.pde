@@ -8,7 +8,8 @@ class Enivornment {
   PImage[] plfImg;
   PImage[] objImg;
   AudioPlayer coinsound;
-
+  AudioPlayer player;
+ 
   HashMap<String, Box> box;
   String[] boxName = {"Info", "Name", "High_score"};
 
@@ -16,7 +17,7 @@ class Enivornment {
   String[] buttonName = {"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};
 
   HashMap<String, Screen> screen;
-  String[] screenName = {"Game", "Pause", "Win", "Lose", "Info", "Home"};
+  String[] screenName = {"Game", "Pause", "Win", "Lose", "Info", "Home"}; 
   String currentScreen;
 
   HashMap<String, Scene> scene;
@@ -24,10 +25,12 @@ class Enivornment {
   String currentScene;
 
   Enivornment() {
-    a = new Sprite("cat", new PVector(20, 600));
-    zb = new Enemy("zombie", new PVector(1000, 500), a.pos);
-    zg = new Enemy("zombiegirl", new PVector(500, 500), a.pos);
 
+    a = new Sprite("cat",new PVector(20,600));
+    zb = new Enemy("zombie", new PVector(1000,500), a.pos);
+    zg = new Enemy("zombiegirl", new PVector(500,500), a.pos);
+    j = new Enemy("jack", new PVector(1000,1000), a.pos);
+    
     flag = new Flag(new PVector(825, 420), 50, 10, "flag");
     santa = new Flag(new PVector(300, 200), 50, 10, "santa");
 
@@ -44,15 +47,54 @@ class Enivornment {
     a.setupStates();
     zb.setStates();
     zg.setStates();
+    j.setStates();
     setupScreen();
     setupScene();
 
     setScreen("Home");
     setScene("forest");
   }
-
-
-
+  
+  void music(){
+    //music
+    switch(currentScene){
+      case "forest":
+        player = minim.loadFile("sounds/Underclocked(level1).mp3");
+        player.play();
+        player.loop();
+        break;
+      case "winter":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
+          player.play();
+          player.loop();
+        }
+        break;
+      case "desert":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/Searching(level3).mp3");
+          player.play();
+          player.loop();
+        }
+        break;
+      case "graveyard":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
+          player.play();
+        }
+        break;
+    }
+    if(currentScreen == "Win"){
+      if(player.isPlaying()){
+        player.close();
+      }
+      player = minim.loadFile("sounds/Win.mp3");
+      player.play();
+    }
+  }
 
 
   // screen
@@ -110,26 +152,34 @@ class Enivornment {
       detectCollision(a, p);
       detectCollision(zb, p);
       detectCollision(zg, p);
+      detectCollision(j, p);
     }
     for (Water w : sc.wtr) {
       w.display();
-      w.generateBoundaries();      
-      if (detectEdge(a, w) && !a.currentState.equals("Dead")) {
+      w.generateBoundaries(); 
+      
+      // enemy
+      if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         a.changeState("Dead");
       }
-      if (detectEdge(zb, w) && zb.goRight) {
+      if(detectEdge(zg,w) && !a.currentState.equals("Dead")){
+        zg.changeState("Dead");
+        zg.goRight = true;
+      }
+      if(detectEdge(zb,w) && zb.goRight){
         zb.goRight = false;
       }
-      if (detectEdge(zb, w) && zb.goRight == false) {
+      if(detectEdge(zb,w) && !zb.goRight){
         zb.goRight = true;
-      }
-      if (detectEdge(zg, w) && zg.goRight) {
-        zg.goRight = false;
       }
     }
   }
-  // obj
-  void displayAllObj() {
+  
+  
+  
+  
+  // obj    
+  void displayAllObj(){
     Scene sc = getScene(currentScene);
     for (Object o : sc.obj) {
       o.display();

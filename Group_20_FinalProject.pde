@@ -5,11 +5,14 @@ import ddf.minim.*;
 import java.util.Map;
 
 Minim minim;
-AudioPlayer player;
-AudioPlayer jump;
+AudioPlayer jumpsound;
 
 Sprite a, sa;
-Enemy zb, zg;
+Enemy zb, zg,j;
+
+XML xml;
+HighScore highscore;
+
 static Score s;
 static Timer t;
 static GUI gui;
@@ -24,27 +27,25 @@ void setup() {
   frameRate(60);
 
   minim = new Minim(this);
-  jump = minim.loadFile("sounds/Jump.wav");
-  player = minim.loadFile("sounds/Underclocked(level1).mp3");
-  player.play();
-  player.loop();
 
-
+  jumpsound = minim.loadFile("sounds/Jump.wav");
+  
+  xml = loadXML("score/highscores.xml");
+  highscore = new HighScore(xml);
+  
   en = new Enivornment();
   gui = new GUI();
-
   gui.setupGUI();
-
   en.setupEnv();   
 
-  left = false; 
-  right = false; 
-  up = false; 
-  down = false;
+  en.music();
+  
+  left = false; right = false; up = false; down = false;
 }
 
 void draw() {
   en.display();
+  
   gui.detectBttn();
   gui.bttnAct();
   gui.display();
@@ -57,56 +58,48 @@ void draw() {
     t.display();
     a.update();
     a.display();
-    //zb.update();
-    //zb.display();
     zg.update();
     zg.display();
-    if (en.flag.detectFlag()) {
+    j.update();
+    j.display();
+    j.jump();
+  
+    if(en.flag.detectFlag()){
       a.reset();
-      //zb.reset();
       zg.reset();
-      switch(en.currentScene) {
-      case "forest":
-        en.setScene("winter");
-        player.close();
-        player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
-        player.play();
-        player.loop();
-        break;
-      case "winter":
-        en.setScene("desert");
-        player.close();
-        player = minim.loadFile("sounds/Searching(level3).mp3");
-        player.play();
-        player.loop();
-        break;
-      case "desert":
-        en.setScene("graveyard");
-        player.close();
-        player = minim.loadFile("sounds/DigitalNative(level4).mp3");
-        player.play();
-        player.loop();
-        break;
-      case "graveyard":
-        en.setScreen("Win");
-        player.close();
-        player = minim.loadFile("sounds/Win.mp3");
-        player.play();
-        break;
+      switch(en.currentScene){
+        case "forest":
+          en.setScene("winter");
+          en.music();
+          break;
+        case "winter":
+          en.setScene("desert");
+          en.music();
+          break;
+        case "desert":
+          en.setScene("graveyard");
+          en.music();
+          break;
+        case "graveyard":
+          en.setScreen("Win");
+          en.music();
+          break;
       }
     }
-  } else if (en.currentScreen == "Win") {
-    player.close();
-    en.getScreen("Win").updateText(2, str(s.score+5*a.lives+10-int(t.frameCnt/240)));
-  } else if (en.currentScreen == "Pause") {
+  }
+  
+  else if(en.currentScreen == "Win"){
+      en.getScreen("Win").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
+  }
+  else if(en.currentScreen == "Pause"){
     // pause
   } else if (en.currentScreen == "Info") {
     // pause and display info
     en.getScreen("Info");
   } else if (en.currentScreen == "Home") {
     en.getScreen("Home");
-  } else {
-    player.close();
+  } 
+  else{
     en.setScreen("Lose");
     en.getScreen("Lose").updateText(2, str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
@@ -130,15 +123,14 @@ void keyPressed() {
     break;
   case 38: //up
     up = true;
+    jumpsound.play();
+    jumpsound.rewind();
     break;
   case 40://down
     down = true;
     break;
   }
-  if (keyCode == UP) {
-    jump.play();
-    jump.rewind();
-  }
+
 }
 
 
@@ -156,16 +148,5 @@ void keyReleased() {
   case 40://down
     down = false;
     break;
-  }
-
-  if (key == 'm' || key == 'M') {
-    if (player.isPlaying()) {
-      player.pause();
-    } else if (player.position() == player.length()) {
-      player.rewind();
-      player.play();
-    } else {
-      player.play();
-    }
   }
 }
