@@ -5,7 +5,6 @@ import ddf.minim.*;
 import java.util.Map;
 
 Minim minim;
-AudioPlayer player;
 AudioPlayer jump;
 
 XML xml;
@@ -29,15 +28,13 @@ void setup(){
   
   minim = new Minim(this);
   jump = minim.loadFile("sounds/Jump.wav");
-  player = minim.loadFile("sounds/Underclocked(level1).mp3");
-  player.play();
-  player.loop();
   
   xml = loadXML("score/highscores.xml");
   highscore = new HighScore(xml);
   
   en = new Enivornment();
   en.setupEnv();   
+  en.music();
   
   t = new Timer();
   left = false; right = false; up = false; down = false;
@@ -47,6 +44,7 @@ void draw(){
   en.display();
   en.detectBttn();
   en.bttnAct();
+  
     
   if(a.lives > 0 && en.currentScreen == "Game"){
     if(a.currentState == "Dead"){
@@ -67,37 +65,25 @@ void draw(){
       switch(en.currentScene){
         case "forest":
           en.setScene("winter");
-          player.close();
-          player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
-          player.play();
-          player.loop();
+          en.music();
           break;
         case "winter":
           en.setScene("desert");
-          player.close();
-          player = minim.loadFile("sounds/Searching(level3).mp3");
-          player.play();
-          player.loop();
+          en.music();
           break;
         case "desert":
           en.setScene("graveyard");
-          player.close();
-          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
-          player.play();
-          player.loop();
+          en.music();
           break;
         case "graveyard":
           en.setScreen("Win");
-          player.close();
-          player = minim.loadFile("sounds/Win.mp3");
-          player.play();
+          en.music();
           break;
       }
     }
   }
   
   else if(en.currentScreen == "Win"){
-      player.close();
       en.getScreen("Win").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }
   else if(en.currentScreen == "Pause"){
@@ -111,7 +97,6 @@ void draw(){
     en.getScreen("Home");
   }
   else{
-    player.close();
     en.setScreen("Lose");
     en.getScreen("Lose").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
   }

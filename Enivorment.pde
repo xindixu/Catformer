@@ -106,6 +106,9 @@ class Enivornment {
       s.resetScore();
       t.resetTime();
       a.lives = 3;
+      if(player.isPlaying()){
+        player.close();
+      }
       player = minim.loadFile("sounds/Underclocked(level1).mp3");
       player.play();
       player.loop();
@@ -133,6 +136,47 @@ class Enivornment {
       } else{
         player.play();
       }
+    }
+  }
+  
+  void music(){
+    //music
+    switch(currentScene){
+      case "forest":
+        player = minim.loadFile("sounds/Underclocked(level1).mp3");
+        player.play();
+        player.loop();
+        break;
+      case "winter":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/Come and Find Me(level2).mp3");
+          player.play();
+          player.loop();
+        }
+        break;
+      case "desert":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/Searching(level3).mp3");
+          player.play();
+          player.loop();
+        }
+        break;
+      case "graveyard":
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
+          player.play();
+        }
+        break;
+    }
+    if(currentScreen == "Win"){
+      if(player.isPlaying()){
+        player.close();
+      }
+      player = minim.loadFile("sounds/Win.mp3");
+      player.play();
     }
   }
 
