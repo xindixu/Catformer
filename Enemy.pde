@@ -1,7 +1,7 @@
 class Enemy{
    String name;
-   String[] stateName = {"Attack", "Walk", "Dead", "Jump"};
-   int[] frameCnt = {8,10,12,10};
+   String[] stateName = {"Attack", "Walk", "Dead", "Jump", "Idle"};
+   int[] frameCnt = {8,10,12,10,8};
    HashMap<String,State> states;
    PVector pos,start,vel,accel;
    PVector leftp, rightp, headp, bodyp;
@@ -87,14 +87,6 @@ class Enemy{
        reset();
        }
      }
-     if(currentState.equals("Jump")){
-      vel.set(vel.x,-5);
-      ground = false;
-      if(getState("Jump").end){
-        accel.set(0,-1);
-        vel.set(0,-1);
-      }
-     }
    }
    
    void chase(float Ledge, float Redge, PVector target){
@@ -112,7 +104,7 @@ class Enemy{
          goRight = false;
        }
      }
-     if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 50 && !currentState.equals("Attack")){
+     if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30 && !currentState.equals("Attack")){
        changeState("Attack");
        attacked = true;
      }
@@ -127,10 +119,29 @@ class Enemy{
        reset();
      }
    }
+   
    void jump(){
-     accel.set(0,0);
-     vel.set(0,0);
      changeState("Jump");
+     if(getState("Jump").end){
+       changeState("Idle");
+       pos.set(start);
+       vel.set(0,0);
+     }
+     if(getState("Idle").end){
+       changeState("Jump");
+       //vel.set(0,-1);
+     }
+     if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30){
+       changeState("Idle");
+       a.changeState("Dead");
+     }
+     if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)){
+       s.add(20);
+       changeState("Dead");
+       if(getState("Dead").end){
+         changeState("Jump");
+       }
+     }
    }
    
    void reset(){
