@@ -24,6 +24,7 @@ class Flag {
     }
     return re;
   }
+  
   void display() {
     pushMatrix();
     translate(pos.x, pos.y);

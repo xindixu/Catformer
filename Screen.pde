@@ -46,21 +46,12 @@ class Screen {
 
 void setupScreen() {  
   //{"Start","Restart","Resume","Pause","Quit","Music","High_score","Info","Home"};
-  //{"Game","Pause","Win","Lose","Info","Home"};
+  //{"Game","Pause","Win","Lose","Home"};
   String[] hText = {"Name of the game"};
   PVector[] hpos = {new PVector(width/2, 100)};
   int[] hTxc = {color(255), color(255)};
   PFont[] hTxf = {createFont("Comic Sans MS Bold", 32)};
   PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(-30, 600)};
-
-
-  String[] iText = {"How to play?", "............................................"};
-  PVector[] ipos = {new PVector(width/2, 100), new PVector(width/2, 130)};
-  int[] iTxc = {color(255), color(255)};
-  PFont[] iTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20)};
-  PVector[] iBttnPos ={new PVector(30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
-
-
 
   String[] pText = {"Pause", "Click the button to resume the game."};
   PVector[] ppos = {new PVector(width/2, 100), new PVector(width/2, 130)};
@@ -95,11 +86,9 @@ void setupScreen() {
   Screen win = new Screen(); 
   Screen lose = new Screen();
   Screen home = new Screen();
-  Screen info = new Screen();
 
 
   home.construct(hText, hpos, hTxc, hTxf, hBttnPos);
-  info.construct(iText, ipos, iTxc, iTxf, iBttnPos);
   game.construct(gText, gpos, gTxc, gTxf, gBttnPos);
   pause.construct(pText, ppos, pTxc, pTxf, pBttnPos);
   win.construct(wText, wpos, wTxc, wTxf, wBttnPos);
@@ -107,7 +96,6 @@ void setupScreen() {
 
 
   en.screen.put("Home", home);
-  en.screen.put("Info", info);
   en.screen.put("Game", game);
   en.screen.put("Win", win);
   en.screen.put("Lose", lose);
