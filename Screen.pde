@@ -47,10 +47,10 @@ class Screen {
 void setupScreen() {  
   //{"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};
   //{"Game","Pause","Win","Lose","Home"};
-  String[] hText = {"Name of the game"};
+  String[] hText = {"CATFORMER THE GAME"};
   PVector[] hpos = {new PVector(width/2, 100)};
   int[] hTxc = {color(0), color(0)};
-  PFont[] hTxf = {createFont("Comic Sans MS Bold", 32)};
+  PFont[] hTxf = {createFont("Comic Sans MS Bold", 48)};
   PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(-30, 550), new PVector(-30, 600)};
 
   String[] pText = {"Pause", "Click the button to resume the game."};

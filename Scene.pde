@@ -74,7 +74,6 @@ class Forest extends Scene {
   void generateEn(){
     en.add(new Enemy("zombie", new PVector(1350,450), a.pos));
     en.add(new Enemy("zombiegirl", new PVector(600,650), a.pos));
-    //en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
     
     for(Enemy e:en){
       e.setStates();
@@ -132,7 +131,7 @@ class Winter extends Scene {
   void generateEn(){
     en.add(new Enemy("zombie", new PVector(1000,500), a.pos));
     en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
-    en.add(new Enemy("jack", new PVector(1000,1000), a.pos));
+    en.add(new Jack("jack", new PVector(1000,1000), a.pos));
     
     for(Enemy e:en){
       e.setStates();
@@ -261,7 +260,7 @@ class Graveyard extends Scene {
     en.add(new Enemy("zombiegirl", new PVector(500,300), a.pos));
     
     en.add(new Enemy("zombiegirl", new PVector(1100,200), a.pos));
-    en.add(new Enemy("jack", new PVector(300,500), a.pos));
+    en.add(new Jack("jack", new PVector(300,500), a.pos));
     
     en.add(new Enemy("zombie", new PVector(1200,400), a.pos));
     

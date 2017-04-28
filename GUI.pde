@@ -2,6 +2,7 @@ class GUI {
   ArrayList<Button> bt;
   ArrayList<Box> bx;
   PImage wood;
+  
   GUI() {
     this.bt = new ArrayList();
     this.bx = new ArrayList();
