@@ -30,6 +30,7 @@ class Enivornment {
     
     flag = new Flag(new PVector(1450, 105), 50, 10, "flag");
     santa = new Flag(new PVector(-300, 200), 50, 10, "santa");
+    //jack = new Flag(new PVector(1000,500),50,10,"jack");
 
     coinsound = minim.loadFile("sounds/coin.mp3");
 
