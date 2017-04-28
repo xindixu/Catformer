@@ -1,8 +1,8 @@
 
 class Enemy{
    String name;
-   String[] stateName = {"Attack", "Walk", "Dead"};
-   int[] frameCnt = {8,10,12};
+   String[] stateName = {"Attack", "Walk", "Dead", "Jump", "Idle"};
+   int[] frameCnt = {8,10,12,10,8};
    HashMap<String,State> states;
    PVector pos,start,vel,accel;
    PVector leftp, rightp, headp, bodyp;
@@ -121,39 +121,39 @@ class Enemy{
      }
    }
    
-   //void goJ(){
-   //  if(currentState.equals("Jump")){
-   //    vel.set(0,-5);
-   //    ground = false;
-   //  }
-   //  if(getState("Jump").end){
-   //    changeState("Idle");
-   //  }
-   //  if(currentState.equals("Idle")){
+   void goJ(){
+     if(currentState.equals("Jump")){
+       vel.set(0,-5);
+       ground = false;
+     }
+     if(getState("Jump").end){
+       changeState("Idle");
+     }
+     if(currentState.equals("Idle")){
        
-   //  }
-   //  if(currentState.equals("Dead")){
-   //    if(getState("Dead").end){
-   //      pos.set(start);
-   //      changeState("Jump");
-   //    }
-   //  }
-   //}
+     }
+     if(currentState.equals("Dead")){
+       if(getState("Dead").end){
+         pos.set(start);
+         changeState("Jump");
+       }
+     }
+   }
    
-   //void jump(){
-   //  changeState("Jump");
-   //  if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30){
-   //    changeState("Idle");
-   //    a.changeState("Dead");
-   //  }
-   //  if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)){
-   //    s.add(20);
-   //    changeState("Dead");
-   //    if(getState("Dead").end){
-   //      changeState("Jump");
-   //    }
-   //  }
-   //}
+   void jump(){
+     changeState("Jump");
+     if(abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30){
+       changeState("Idle");
+       a.changeState("Dead");
+     }
+     if(((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)){
+       s.add(20);
+       changeState("Dead");
+       if(getState("Dead").end){
+         changeState("Jump");
+       }
+     }
+   }
    
    void reset(){
      changeState("Walk");
@@ -209,25 +209,25 @@ class Enemy{
       popMatrix();
     }
   }
-  //void updateJ(){
-  //    goJ();
-  //    IsGround();
-  //    updateBodyPos();
+  void updateJ(){
+      goJ();
+      IsGround();
+      updateBodyPos();
   
-  //    // apply friction & gravity
-  //    if(ground){
-  //      vel.set(vel.x*f,vel.y);
-  //    }
-  //    else{
-  //      vel.set(vel.x*f,vel.y+g);
-  //    }
+      // apply friction & gravity
+      if(ground){
+        vel.set(vel.x*f,vel.y);
+      }
+      else{
+        vel.set(vel.x*f,vel.y+g);
+      }
   
-  //    vel.add(accel);
-  //    vel.set(constrain(vel.x,-5,5),constrain(vel.y,-10,10));
+      vel.add(accel);
+      vel.set(constrain(vel.x,-5,5),constrain(vel.y,-10,10));
       
-  //    pos.add(vel);
-  //    pos.set(constrain(pos.x,0,width),constrain(pos.y,0,height));
+      pos.add(vel);
+      pos.set(constrain(pos.x,0,width),constrain(pos.y,0,height));
     
-  //}
+  }
   
 }
