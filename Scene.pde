@@ -106,6 +106,14 @@ class Winter extends Scene {
     plf.add(new Platform_on_ground(new PVector(500, 550), 4, 1));
     plf.add(new Platform_on_ground(new PVector(600, 400), 3, 1));
     plf.add(new Platform_on_ground(new PVector(700, 450), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(675, 120), 7, 2));
+    plf.add(new Platform_on_ground(new PVector(225, 900), 4, 1));
+    plf.add(new Platform_on_ground(new PVector(950,480), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(1000, 145), 8, 1));
+    plf.add(new Platform_on_ground(new PVector(1100, 350), 8, 2));  
+    plf.add(new Platform_on_ground(new PVector(1500, 600), 4, 1));
+    //flag platform
+    plf.add(new Platform_on_ground(new PVector(1450, 150), 6, 1));
 
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
@@ -166,6 +174,13 @@ class Desert extends Scene {
     plf.add(new Platform_on_ground(new PVector(500, 550), 4, 1));
     plf.add(new Platform_on_ground(new PVector(600, 400), 3, 1));
     plf.add(new Platform_on_ground(new PVector(700, 450), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(650, 180), 10, 1));
+    plf.add(new Platform_on_ground(new PVector(270, 1000), 6, 2));
+    plf.add(new Platform_on_ground(new PVector(1150, 350), 7, 1));  
+    plf.add(new Platform_on_ground(new PVector(1450, 600), 5, 1));
+    //flag platform
+    plf.add(new Platform_on_ground(new PVector(1370, 150), 4, 1));
+
 
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
@@ -224,8 +239,10 @@ class Graveyard extends Scene {
     plf.add(new Platform_on_ground(new PVector(1100, 400), 2, 1));
     plf.add(new Platform_on_ground(new PVector(950, 150), 5, 1));
     plf.add(new Platform_on_ground(new PVector(80, 100), 4, 1));
-
-
+    
+    plf.add(new Platform_on_ground(new PVector(180, 140), 9, 1));
+    plf.add(new Platform_on_ground(new PVector(1435, 150), 4, 2));
+    plf.add(new Platform_on_ground(new PVector(650, 480), 6, 1));
     
 
     // ground

@@ -130,8 +130,7 @@ class Enemy{
        changeState("Idle");
      }
      if(currentState.equals("Idle")){
-      accel.set(0,0);
-      ground = true;
+       
      }
      if(currentState.equals("Dead")){
        if(getState("Dead").end){
@@ -231,12 +230,4 @@ class Enemy{
     
   }
   
-  void displayJ(){
-    State temp = getState(currentState);
-    pushMatrix();
-    translate(0,pos.y-size);
-    scale(-1,1);
-    temp.display(true);
-    popMatrix();
-  }
 }
