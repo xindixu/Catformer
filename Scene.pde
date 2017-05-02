@@ -33,7 +33,10 @@ class Forest extends Scene {
 
 
   void generateObj() {
-    obj.add(new Object(new PVector(100, 200), 1));
+    obj.add(new Object(new PVector(410, 110), 5));
+    obj.add(new Object(new PVector(680, 310), 6));
+    obj.add(new Object(new PVector(770, 340), 0));
+    obj.add(new Object(new PVector(860, 100), 9));
   }
 
 
@@ -92,7 +95,10 @@ class Winter extends Scene {
 
 
   void generateObj() {
-    obj.add(new Object(new PVector(100, 450), 1));
+    obj.add(new Object(new PVector(350, 325), 1));
+    obj.add(new Object(new PVector(770, 500), 3));
+    obj.add(new Object(new PVector(505, 173), 7));
+    obj.add(new Object(new PVector(1380, 325), 9));
   }
 
   void generatePlf() {
@@ -111,14 +117,14 @@ class Winter extends Scene {
     plf.add(new Platform_on_ground(new PVector(950,480), 6, 1));
     plf.add(new Platform_on_ground(new PVector(1000, 145), 8, 1));
     plf.add(new Platform_on_ground(new PVector(1100, 350), 8, 2));  
-    plf.add(new Platform_on_ground(new PVector(1500, 600), 4, 1));
+    plf.add(new Platform_on_ground(new PVector(1400, 600), 7, 1));
     //flag platform
     plf.add(new Platform_on_ground(new PVector(1450, 150), 6, 1));
 
     // ground
     plf.add(new Platform_on_ground(new PVector(0, 700), 20, 1));
     plf.add(new Platform_on_ground(new PVector(575, 700), 3, 1));
-    plf.add(new Platform_on_ground(new PVector(750, 700), 20, 1));
+    plf.add(new Platform_on_ground(new PVector(750, 700), 23, 1));
 
     wtr.add(new Water(new PVector(675, 700), 2, 1));
     wtr.add(new Water(new PVector(525, 700), 1, 1));
@@ -303,5 +309,6 @@ void setupScene() {
     sc.generatePlf();
     sc.generateCn();
     sc.generateEn();
+    sc.generateObj();
   }
 }
