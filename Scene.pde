@@ -5,6 +5,7 @@ abstract class Scene {
   ArrayList<Coins> cn;
   ArrayList<Object> obj;
   ArrayList<Enemy> en;
+  //ArrayList<Splash> s;
   String[] objName;
   int pfSize = 25;
 
@@ -15,6 +16,7 @@ abstract class Scene {
     this.cn = new ArrayList();
     this.obj = new ArrayList();
     this.en = new ArrayList();
+    //this.s = new ArrayList();
   }
 
   abstract void generateObj();
@@ -80,6 +82,8 @@ class Forest extends Scene {
     
     for(Enemy e:en){
       e.setStates();
+      e.update();
+      e.display();
     }
   }
 }
@@ -149,6 +153,8 @@ class Winter extends Scene {
     
     for(Enemy e:en){
       e.setStates();
+      e.update();
+      e.display();
     }
   }
 }
@@ -222,6 +228,8 @@ class Desert extends Scene {
     
     for(Enemy e:en){
       e.setStates();
+      e.update();
+      e.display();
     }
   }
 }
@@ -298,6 +306,8 @@ class Graveyard extends Scene {
     
     for(Enemy e:en){
       e.setStates();
+      e.update();
+      e.display();
     }
   }
 }

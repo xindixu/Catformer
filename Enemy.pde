@@ -75,7 +75,8 @@ class Enemy {
       if (goRight) {
         accel.set(0, 0);
         vel.set(0, 0);
-      } else {
+      } 
+      else {
         accel.set(0, 0);
         vel.set(0, 0);
       }
@@ -111,11 +112,11 @@ class Enemy {
       a.changeState("Dead");
       reset();
     }
-    if (((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)) {
-      changeState("Dead");
-      s.add(20);
-      reset();
-    }
+    //if (((bodyp.y - target.y) <= 20) && (abs(bodyp.x - target.x) <= 20)) {
+    //  changeState("Dead");
+    //  s.add(20);
+    //  reset();
+    //}
   }
 
   void reset() {
@@ -161,7 +162,8 @@ class Enemy {
       translate(pos.x-size/2, pos.y-size);
       temp.display(false);
       popMatrix();
-    } else {     
+    } 
+    else {     
       pushMatrix();
       translate(pos.x-size/2, pos.y-size);
       scale(-1, 1);

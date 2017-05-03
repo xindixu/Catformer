@@ -14,6 +14,7 @@ class Sprite {
   String collisionSide;
   boolean onland, headRight;
   int lives;
+  Splash ws;
 
   Sprite(String name, PVector pos) {
     this.name = name;
@@ -34,6 +35,8 @@ class Sprite {
     this.lives = 3;
     heart = loadImage("heart.png");
     heart.resize(10, 10);
+    ws = new Splash(15, pos);
+
   }
 
   void setupStates() {
@@ -89,6 +92,7 @@ class Sprite {
       if (getState("Jump").end) {
         changeState("Fall");
       }
+      ws.run();
     }
     if (currentState.equals("Fall")) {
       if (onland) {

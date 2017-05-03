@@ -4,6 +4,7 @@ class Enivornment {
   int w, h;
   int pfSize = 25;
   Flag flag, santa;
+  Splash ws;
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
@@ -24,12 +25,15 @@ class Enivornment {
   String[] sceneName = {"forest", "winter", "desert", "graveyard"};
   String currentScene;
 
+
   Enivornment() {
 
     a = new Sprite("cat",new PVector(20,600));
     
     flag = new Flag(new PVector(1450, 105), 50, 10, "flag");
     santa = new Flag(new PVector(-300, 200), 50, 10, "santa");
+    
+    ws = new Splash(15, a.pos);
 
     coinsound = minim.loadFile("sounds/coin.mp3");
 
@@ -159,7 +163,9 @@ class Enivornment {
       w.generateBoundaries(); 
       
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
+        print("water splash");
         a.changeState("Dead");
+        ws.run();
       }
       
       for(Enemy e:sc.en){
@@ -169,9 +175,6 @@ class Enivornment {
         }
         if(detectEdge(e,w) && e.goRight){
           e.goRight = false;
-        }
-        if(detectEdge(e,w) && !e.goRight){
-          e.goRight = true;
         }
       }
     }
