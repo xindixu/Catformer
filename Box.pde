@@ -7,13 +7,15 @@ class Box {
   boolean on;
   Button close;
   String body;
+  Boolean isHighScore;
 
 
-  Box(String name, int w, int h, String info, String body, PVector pos) {
+  Box(String name, int w, int h, String info, String body, PVector pos, Boolean isHighScore) {
     this.name = name;
     this.w = w;
     this.h = h;
     this.pos = pos.copy();
+    this.isHighScore = isHighScore;
     img = loadImage("GUI/box/"+name+".png");
     img.resize(w, h);
     this.info = info;this.body = body;
@@ -45,9 +47,12 @@ class Box {
       translate(pos.x, pos.y);
       image(img, 0, 0);
       textSize(40);
-      text(info,100,50);
+      text(info,225,37);
       textSize(12);
       text(body,40,100, w-80, h-100);
+      if(isHighScore){
+        highscore.display();
+      }
       popMatrix();
       close.display();
       close.detect();
@@ -66,8 +71,8 @@ class Box {
 class Textbox extends Box {
   int tw, th;
   
-  Textbox(String name, int w, int h, String info, String body,PVector pos, int tw, int th) {
-    super(name, w, h, info,body, pos);
+  Textbox(String name, int w, int h, String info, String body, PVector pos, Boolean isHighScore, int tw, int th) {
+    super(name, w, h, info,body, pos, isHighScore);
     this.tw = tw;
     this.th = th;
   }

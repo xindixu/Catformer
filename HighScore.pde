@@ -85,18 +85,19 @@ class HighScore{
     namesList = file.getChildren("scores/entry/name");
     pointsList = file.getChildren("scores/entry/points");
     
-    y = 100;
+    y = 175;
     textFont(font);
-    text(title, 100, 40);
+    //text(title, 700, 300);
     
     for(int i = 0; i < pointsList.length; i++){
+      String num = str(i+1) + ")";
       name = namesList[i].getContent();
       score = pointsList[i].getContent();
+      text(num, 260, y);
+      text(name, 285, y);
+      text(score, 370, y);
       
-      text(name, 100, y);
-      text(score, 200, y);
-      
-      y += 60;
+      y += 50;
     } 
   }
 }
