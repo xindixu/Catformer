@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<main>
+<highscores>
    <title>High Scores</title>
    <scores>
-      <first>
+      <entry>
          <name>AAA</name>
          <points>000</points>
-      </first>
-      <second>
+      </entry>
+      <entry>
          <name>AAA</name>
          <points>000</points>
-      </second>
-      <third>
+      </entry>
+      <entry>
          <name>AAA</name>
          <points>000</points>
-      </third>
-      <fourth>
+      </entry>
+      <entry>
          <name>AAA</name>
          <points>000</points>
-      </fourth>
-      <fifth>
+      </entry>
+      <entry>
          <name>AAA</name>
          <points>000</points>
-      </fifth>
+      </entry>
    </scores>
-</main>
+</highscores>

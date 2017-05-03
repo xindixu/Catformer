@@ -42,10 +42,12 @@ class GUI {
     
     //menu.setButtons();
     
-    String t = "     Hight Score";
+    String t = "     High Score";
     String d = "";
     Box high_score = new Textbox("Text_box", 700, 500, t, d, new PVector(width/2-350, height/2-250),200,100);
     en.box.put("High_score",high_score);
+    highscore.display();
+    
   }
 
   void generateButtons() {
