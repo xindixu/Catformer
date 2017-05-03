@@ -78,7 +78,7 @@ class Textbox extends Box {
   }
 
    void read(){
-    //
+    
   }
 
   void display() {

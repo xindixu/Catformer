@@ -1,13 +1,11 @@
 class HighScore{
   PFont font;
   XML file;
-  String title;
   String name;
   String score;
   int y;
   XML[] namesList;
   XML[] pointsList;
-  HashMap<String,Integer> scores = new HashMap<String,Integer>();
   
   HighScore(XML input){
     this.file = input;
@@ -81,13 +79,11 @@ class HighScore{
   
   void display(){
     font = createFont("Comic Sans MS Bold", 25);
-    title = file.getChild("title").getContent();
     namesList = file.getChildren("scores/entry/name");
     pointsList = file.getChildren("scores/entry/points");
     
     y = 175;
     textFont(font);
-    //text(title, 700, 300);
     
     for(int i = 0; i < pointsList.length; i++){
       String num = str(i+1) + ")";

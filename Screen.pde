@@ -66,8 +66,13 @@ void setupScreen() {
   PFont[] gTxf = {createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] gBttnPos = {new PVector(-30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(-30, 500), new PVector(-30, 550), new PVector(-30, 600)};
 
-
+  
   String[] wText = {"Congrats!", "Your score:", ""};
+  String t = "Enter Your Initials:";
+  String d = "";
+  //Box enterHighScore = new Textbox("Text_box", 700, 500, t, d, new PVector(width/2-350, height/2-250),true, 100, 200);
+  //en.box.put("Enter_High_Score",enter_high_score);
+  //enterHighScore.display();
   PVector[] wpos = {new PVector(500, 100), new PVector(500, 130), new PVector(630, 130)};
   int[] wTxc = {color(255), color(255), color(255)};
   PFont[] wTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};

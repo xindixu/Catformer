@@ -44,7 +44,7 @@ class GUI {
     
     String t = " High Scores";
     String d = "";
-    Box high_score = new Box("Box", 700, 500, t, d, new PVector(width/2-350, height/2-250),true); //,200,100
+    Box high_score = new Box("Box", 700, 500, t, d, new PVector(width/2-350, height/2-250),true);
     en.box.put("High_score",high_score);
     
   }

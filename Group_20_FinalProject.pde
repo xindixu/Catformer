@@ -133,9 +133,10 @@ void keyPressed() {
     text = "";
   }
   else{
-    text += key;
+    if(text.length() < 3){
+      text += key;
+    }
   }
-  println(text);
 }
 
 
