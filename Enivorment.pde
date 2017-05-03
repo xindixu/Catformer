@@ -11,7 +11,7 @@ class Enivornment {
   AudioPlayer player;
  
   HashMap<String, Box> box;
-  String[] boxName = {"Info", "Name", "High_score"};
+  String[] boxName = {"Info", "High_score"};
 
   HashMap<String, Button> button;
   String[] buttonName = {"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};

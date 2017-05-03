@@ -32,8 +32,9 @@ class GUI {
 
 
   void generateBoxes() {
-    String s = "How to play: xxxxxxxxxxxxxxxxxxxxxxx";
-    Box info = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
+    String s = "      How to play:";
+    String b = "test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.test://There are eight predefined colour schemes to give a consistent look and feel to the controls. V3 has better text clarity in all 2D/3D rendering modes. Styles (attributes) can now be applied to text e.g. bold, italic, sub/super script etc.";
+    Box info = new Box("Box", 700, 500, s,b, new PVector(width/2-350, height/2-250));
     en.box.put("Info", info);
     
     //Box menu = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
@@ -41,6 +42,10 @@ class GUI {
     
     //menu.setButtons();
     
+    String t = "     Hight Score";
+    String d = "";
+    Box high_score = new Textbox("Text_box", 700, 500, t, d, new PVector(width/2-350, height/2-250),200,100);
+    en.box.put("High_score",high_score);
   }
 
   void generateButtons() {
@@ -96,6 +101,12 @@ class GUI {
       Box infob = en.box.get("Info");
       infob.on = true;
     }
+    Button high_score = en.button.get("High_score");
+    if(high_score.status == "Clicked"){
+      en.setScreen("Home");
+      Box high_scoreb = en.box.get("High_score");
+      high_scoreb.on = true; 
+    }
 
     Button home = en.button.get("Home");
     if (home.status == "Clicked") {
@@ -115,10 +126,7 @@ class GUI {
     if (music.status == "Clicked" && !en.player.isPlaying()) {
       en.player.play();
       music.status = "Normal";
-    }
-    
-    
-    
+    }  
   }
 
 
@@ -133,7 +141,10 @@ class GUI {
   }
 
   void displayBox() {
-    Box b = en.box.get("Info");
-    b.display();
+    for (int i = 0; i < en.boxName.length; i ++) {
+      String n = en.boxName[i];
+      Box b = en.box.get(n);
+      b.display();
+    }
   }
 }

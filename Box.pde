@@ -6,16 +6,17 @@ class Box {
   String info;
   boolean on;
   Button close;
+  String body;
 
 
-  Box(String name, int w, int h, String info, PVector pos) {
+  Box(String name, int w, int h, String info, String body, PVector pos) {
     this.name = name;
     this.w = w;
     this.h = h;
     this.pos = pos.copy();
     img = loadImage("GUI/box/"+name+".png");
     img.resize(w, h);
-    this.info = info;
+    this.info = info;this.body = body;
     this.on = false;
     close = new Button("Close");
     close.loadImg("Close"+" (", ").png");
@@ -43,7 +44,10 @@ class Box {
       pushMatrix();
       translate(pos.x, pos.y);
       image(img, 0, 0);
-      text(info, pos.x-50, pos.y, w, h);
+      textSize(40);
+      text(info,100,50);
+      textSize(12);
+      text(body,40,100, w-80, h-100);
       popMatrix();
       close.display();
       close.detect();
@@ -53,6 +57,7 @@ class Box {
     }
     if (close.status == "Clicked") {
       on = false;
+      text = "";
       en.setScreen(en.currentScreen);
     }
   }
@@ -60,18 +65,23 @@ class Box {
 
 class Textbox extends Box {
   int tw, th;
-  Textbox(String name, int w, int h, String info, PVector pos, int tw, int th) {
-    super(name, w, h, info, pos);
+  
+  Textbox(String name, int w, int h, String info, String body,PVector pos, int tw, int th) {
+    super(name, w, h, info,body, pos);
     this.tw = tw;
     this.th = th;
   }
 
-  void input() {
-    // user input 
-    // name initials
+   void read(){
+    //
   }
 
   void display() {
-    super.display();
+    if (on) {
+      super.display();
+      fill(0);
+      textSize(40);
+      text(text,pos.x+300,pos.y+300);
+    }
   }
 }

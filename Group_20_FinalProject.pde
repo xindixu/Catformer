@@ -17,7 +17,8 @@ static Timer t;
 static GUI gui;
 static PImage bg, heart;
 static PImage[] plfImg, btnImg;
-static boolean left, right, up, down, mouse;
+static boolean left, right, up, down, mouse,newInput;
+static String text;
 
 Enivornment en;
 
@@ -38,8 +39,8 @@ void setup() {
   en.setupEnv();   
 
   en.music();
-  
-  left = false; right = false; up = false; down = false;
+  text = "";
+  left = false; right = false; up = false; down = false; newInput = false;
 }
 
 void draw() {
@@ -57,8 +58,6 @@ void draw() {
     t.display();
     a.update();
     a.display();
-   
-  
     if(en.flag.detectFlag()){
       a.reset();
       switch(en.currentScene){
@@ -124,7 +123,19 @@ void keyPressed() {
     down = true;
     break;
   }
-
+  
+  if(key == BACKSPACE){
+    if(text.length()>0){
+      text = text.substring(0,text.length()-1);
+    }
+  }
+  else if(key == RETURN || key == ENTER){
+    text = "";
+  }
+  else{
+    text += key;
+  }
+  println(text);
 }
 
 
