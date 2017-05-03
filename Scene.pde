@@ -164,7 +164,13 @@ class Desert extends Scene {
 
 
   void generateObj() {
-    obj.add(new Object(new PVector(100, 450), 1));
+    obj.add(new Object(new PVector(100, 142), 2));
+    obj.add(new Object(new PVector(690, 135), 3));
+    obj.add(new Object(new PVector(500, 453), 4));
+    obj.add(new Object(new PVector(1460, 499), 5));
+    obj.add(new Object(new PVector(1495, 553), 7));    
+    obj.add(new Object(new PVector(950, 652), 10));
+    
   }
 
 
@@ -230,7 +236,13 @@ class Graveyard extends Scene {
 
 
   void generateObj() {
-    obj.add(new Object(new PVector(100, 450), 1));
+    obj.add(new Object(new PVector(100, 415), 1));
+    obj.add(new Object(new PVector(950, 80), 4));
+    obj.add(new Object(new PVector(1400, 445), 7));
+    obj.add(new Object(new PVector(630, 625), 8));
+    obj.add(new Object(new PVector(815, 460), 9));
+
+    
   }
 
   void generatePlf() {
@@ -238,11 +250,9 @@ class Graveyard extends Scene {
     plf.add(new Platform_on_ground(new PVector(450, 300), 4, 1)); 
       
     plf.add(new Platform_on_ground(new PVector(100, 500), 8, 1));
-    plf.add(new Platform_on_ground(new PVector(1300, 500), 4, 1));
-    
-    plf.add(new Platform_on_ground(new PVector(1425, 500), 4, 1));
-    plf.add(new Platform_on_ground(new PVector(1100, 400), 2, 1));
-    plf.add(new Platform_on_ground(new PVector(950, 150), 5, 1));
+    plf.add(new Platform_on_ground(new PVector(1300, 500), 7, 1));
+    plf.add(new Platform_on_ground(new PVector(900, 400), 5, 1));
+    plf.add(new Platform_on_ground(new PVector(950, 150), 6, 1));
     plf.add(new Platform_on_ground(new PVector(80, 100), 4, 1));
     
     plf.add(new Platform_on_ground(new PVector(180, 140), 9, 1));
@@ -261,7 +271,6 @@ class Graveyard extends Scene {
     
     wtr.add(new Water(new PVector(1400, 500), 1, 1));
     wtr.add(new Water(new PVector(1200, 200), 4, 1));
-    wtr.add(new Water(new PVector(1000, 600), 2, 1));
     
   }
 
