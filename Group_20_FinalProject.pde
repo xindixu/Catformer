@@ -8,6 +8,7 @@ Minim minim;
 AudioPlayer jumpsound;
 
 Sprite a;
+Splash ws;
 
 XML xml;
 HighScore highscore;
@@ -30,6 +31,8 @@ void setup() {
 
   jumpsound = minim.loadFile("sounds/Jump.wav");
   
+  
+  
   xml = loadXML("score/highscores.xml");
   highscore = new HighScore(xml);
   
@@ -37,6 +40,7 @@ void setup() {
   gui = new GUI();
   gui.setupGUI();
   en.setupEnv();   
+  
 
   en.music();
   text = "";
@@ -45,6 +49,7 @@ void setup() {
 
 void draw() {
   en.display();
+  ws = new Splash(10, a.pos);
   
   gui.detectBttn();
   gui.bttnAct();
@@ -116,6 +121,7 @@ void keyPressed() {
     break;
   case 38: //up
     up = true;
+    ws.run();
     jumpsound.play();
     jumpsound.rewind();
     break;
