@@ -31,7 +31,7 @@ class Box {
     }
   }
   
-  void setButtons(String[] bttn, PVector[] pos){
+  void setButtons(){
     //int i = 0;
     //for(String str: bttn){
     //  gui.bt.get

@@ -103,7 +103,7 @@ class Enemy {
         goRight = false;
       }
     }
-    if (abs(bodyp.x - target.x) <= 30 && abs(bodyp.y - target.y) <= 30 && !currentState.equals("Attack")) {
+    if ((abs(bodyp.x - target.x) <= 37 && abs(bodyp.y - target.y) <= 37) && !currentState.equals("Attack")) {
       changeState("Attack");
       attacked = true;
     }

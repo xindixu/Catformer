@@ -18,13 +18,15 @@ class GUI {
   }
 
   void display() {
-    image(wood,0,0);
-    t.display();
-    s.display();
-    text("Life: ",30,60);
-     // display lives
-    for (int i = 0; i < a.lives; i ++) {
-      image(heart, 80+20*i, 50);
+    if(en.currentScreen == "Game"){
+      image(wood,0,0);
+      t.display();
+      s.display();
+      text("Life: ",30,60);
+       // display lives
+      for (int i = 0; i < a.lives; i ++) {
+        image(heart, 80+20*i, 50);
+      }
     }
     displayBttn(); 
     displayBox();
@@ -37,10 +39,16 @@ class GUI {
     Box info = new Box("Box", 700, 500, s,b, new PVector(width/2-350, height/2-250),false);
     en.box.put("Info", info);
     
-    //Box menu = new Box("Box", 700, 500, s, new PVector(width/2-350, height/2-250));
-    //en.box.put("Menu", menu);
-    
+    String h = "Catformer the Game";
+    String g = "";
+    Box menu = new Box("Box", 700, 500, h, g, new PVector(width/2-350, height/2-250), false);
+    en.box.put("Menu", menu);
     //menu.setButtons();
+    
+    String x = "The Game is Paused";
+    String y = "";
+    Box pause = new Box("Box", 700, 500, x, y, new PVector(width/2-350, height/2-250), false);
+    en.box.put("Pause", pause);
     
     String t = " High Scores";
     String d = "";
@@ -111,6 +119,7 @@ class GUI {
 
     Button home = en.button.get("Home");
     if (home.status == "Clicked") {
+      en.setScene("forest");
       en.setScreen("Home");
     }
 
