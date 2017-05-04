@@ -147,9 +147,9 @@ class Winter extends Scene {
   }
   
   void generateEn(){
-    en.add(new Enemy("zombie", new PVector(1000,500), a.pos));
+    en.add(new Enemy("zombie", new PVector(680,120), a.pos));
     en.add(new Enemy("zombiegirl", new PVector(500,500), a.pos));
-    en.add(new Jack("jack", new PVector(1000,1000), a.pos));
+    en.add(new Jack("jack", new PVector(1150,350), a.pos));
     
     for(Enemy e:en){
       e.setStates();
@@ -222,9 +222,10 @@ class Desert extends Scene {
   }
   
   void generateEn(){
-    en.add(new Enemy("zombie", new PVector(1500,500), a.pos));
-    en.add(new Enemy("zombiegirl", new PVector(200,500), a.pos));
-    en.add(new Enemy("jack", new PVector(60,1000), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(1200,700), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(575,550), a.pos));
+    en.add(new Enemy("zombie", new PVector(650,400), a.pos));
+    en.add(new Jack("jack", new PVector(690,135), a.pos));
     
     for(Enemy e:en){
       e.setStates();
@@ -254,13 +255,13 @@ class Graveyard extends Scene {
   }
 
   void generatePlf() {
-    plf.add(new Platform_on_ground(new PVector(200, 500), 2, 1));
-    plf.add(new Platform_on_ground(new PVector(450, 300), 4, 1)); 
+    plf.add(new Platform_on_ground(new PVector(150, 500), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(380, 300), 6, 1)); 
       
-    plf.add(new Platform_on_ground(new PVector(100, 500), 8, 1));
+    plf.add(new Platform_on_ground(new PVector(100, 500), 10, 1));
     plf.add(new Platform_on_ground(new PVector(1300, 500), 7, 1));
     plf.add(new Platform_on_ground(new PVector(900, 400), 5, 1));
-    plf.add(new Platform_on_ground(new PVector(950, 150), 6, 1));
+    plf.add(new Platform_on_ground(new PVector(900, 150), 7, 1));
     plf.add(new Platform_on_ground(new PVector(80, 100), 4, 1));
     
     plf.add(new Platform_on_ground(new PVector(180, 140), 9, 1));
@@ -273,7 +274,7 @@ class Graveyard extends Scene {
     plf.add(new Platform_on_ground(new PVector(575, 700), 6, 1));
     plf.add(new Platform_on_ground(new PVector(875, 700), 24, 1));
 
-    wtr.add(new Water(new PVector(375, 700), 8, 1));
+    wtr.add(new Water(new PVector(400, 700), 8, 1));
     wtr.add(new Water(new PVector(725, 700), 6, 1));
     wtr.add(new Water(new PVector(1475, 700), 6, 1));
     
@@ -296,13 +297,12 @@ class Graveyard extends Scene {
   }
   
   void generateEn(){
-    en.add(new Enemy("zombie", new PVector(200,100), a.pos));
-    en.add(new Enemy("zombiegirl", new PVector(500,300), a.pos));
-    
-    en.add(new Enemy("zombiegirl", new PVector(1100,200), a.pos));
-    en.add(new Jack("jack", new PVector(300,500), a.pos));
-    
-    en.add(new Enemy("zombie", new PVector(1200,400), a.pos));
+    en.add(new Enemy("zombie", new PVector(1000,150), a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(960,400), a.pos));    
+    en.add(new Jack("jack", new PVector(1350,500), a.pos));
+    en.add(new Jack("jack", new PVector(580,700), a.pos));
+    en.add(new Enemy("zombie", new PVector(500,300),a.pos));
+    en.add(new Enemy("zombiegirl", new PVector(1500,700), a.pos));
     
     for(Enemy e:en){
       e.setStates();
