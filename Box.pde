@@ -71,14 +71,12 @@ class Box {
 class Textbox extends Box {
   int tw, th;
   
-  Textbox(String name, int w, int h, String info, String body, PVector pos, Boolean isHighScore, int tw, int th) {
+  Textbox(String name, int w, int h, String info, String body, PVector pos, Boolean isHighScore) {
     super(name, w, h, info,body, pos, isHighScore);
-    this.tw = tw;
-    this.th = th;
   }
 
    void read(){
-    //
+    highscore.update(text,s.score);
   }
 
   void display() {

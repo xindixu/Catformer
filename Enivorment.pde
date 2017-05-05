@@ -4,7 +4,7 @@ class Enivornment {
   int w, h;
   int pfSize = 25;
   Flag flag, santa;
-  Splash ws;
+
   PImage bg;
   PImage[] plfImg;
   PImage[] objImg;
@@ -12,7 +12,7 @@ class Enivornment {
   AudioPlayer player;
  
   HashMap<String, Box> box;
-  String[] boxName = {"Info", "High_score", "Menu", "Pause"};
+  String[] boxName = {"Info", "High_score", "Name"};
 
   HashMap<String, Button> button;
   String[] buttonName = {"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};
@@ -165,7 +165,7 @@ class Enivornment {
       if(detectEdge(a,w) && !a.currentState.equals("Dead")){
         print("water splash");
         a.changeState("Dead");
-        ws.run();
+
       }
       
       for(Enemy e:sc.en){

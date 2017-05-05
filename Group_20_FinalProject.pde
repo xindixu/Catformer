@@ -8,7 +8,7 @@ Minim minim;
 AudioPlayer jumpsound;
 
 Sprite a;
-Splash ws;
+
 
 XML xml;
 HighScore highscore;
@@ -81,6 +81,8 @@ void draw() {
         case "graveyard":
           en.setScreen("Win");
           en.music();
+          Box bname = en.box.get("Name");
+          bname.on = true;
           break;
       }
     }
@@ -136,6 +138,9 @@ void keyPressed() {
   }
   else if(key == RETURN || key == ENTER){
     text = "";
+    Textbox bname = (Textbox)en.box.get("Name");
+    bname.on = false;
+    bname.read();
   }
   else{
     if(text.length() < 3){
