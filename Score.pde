@@ -18,7 +18,10 @@ class Score {
   void resetScore() {
     score = 0;
   }
-
+  
+  void setScore(int i){
+    this.score = i;
+  }
 
   //displays score
   void display() {

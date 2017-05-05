@@ -10,7 +10,6 @@ AudioPlayer jumpsound;
 Sprite a;
 
 
-XML xml;
 HighScore highscore;
 
 static Score s;
@@ -32,9 +31,7 @@ void setup() {
   jumpsound = minim.loadFile("sounds/Jump.wav");
   
   
-  
-  xml = loadXML("score/highscores.xml");
-  highscore = new HighScore(xml);
+  highscore = new HighScore();
   
   en = new Enivornment();
   gui = new GUI();
@@ -84,13 +81,14 @@ void draw() {
           Box bname = en.box.get("Name");
           bname.on = true;
           text="";
+          s.setScore(s.score+5*a.lives);
           break;
       }
     }
   }
   
   else if(en.currentScreen == "Win"){
-      en.getScreen("Win").updateText(2,str(s.score+5*a.lives+10-int(t.frameCnt/240)));
+      en.getScreen("Win").updateText(2,str(s.score));
   }
   else if(en.currentScreen == "Pause"){
     // pause
@@ -138,12 +136,12 @@ void keyPressed() {
     }
   }
   else if(key == RETURN || key == ENTER){
-    text = "";
     Textbox bname = (Textbox)en.box.get("Name");
     bname.read();
     bname.on = false;
     Box high_score = en.box.get("High_score");
     high_score.on = true;
+    text = "";
   }
   else{
     if(text.length() < 3){

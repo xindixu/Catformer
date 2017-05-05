@@ -50,7 +50,7 @@ class Enivornment {
     setupScene();
 
     setScreen("Home");
-    setScene("graveyard");
+    setScene("forest");
   }
   
   void music(){
@@ -78,19 +78,19 @@ class Enivornment {
         }
         break;
       case "graveyard":
-        //if(player.isPlaying()){
-        //  player.close();
-        //  player = minim.loadFile("sounds/DigitalNative(level4).mp3");
-        //  player.play();
-        //}
+        if(player.isPlaying()){
+          player.close();
+          player = minim.loadFile("sounds/DigitalNative(level4).mp3");
+          player.play();
+        }
         break;
     }
     if(currentScreen == "Win"){
-      //if(player.isPlaying()){
-      //  player.close();
-      //}
-      //player = minim.loadFile("sounds/Win.mp3");
-      //player.play();
+      if(player.isPlaying()){
+        player.close();
+      }
+      player = minim.loadFile("sounds/Win.mp3");
+      player.play();
     }
   }
 

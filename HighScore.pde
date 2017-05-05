@@ -1,101 +1,35 @@
 class HighScore{
   PFont font;
-  XML file;
-  String name;
-  String score;
   int y;
-  XML[] namesList;
-  XML[] pointsList;
+  Table hs;
   
-  HighScore(XML input){
-    this.file = input;
-    
+  HighScore(){
+    hs = loadTable("score/highscores.csv","header");
   }
   
-  void update(String n, int s){
-    println("!!!!!!");
-    println(s);
-    namesList = file.getChildren("scores/entry/name");
-    pointsList = file.getChildren("scores/entry/points");
-    for(int x = 4; x >= 0; x--){
-      if((pointsList[x].getIntContent()) <= s){
-        continue;
-      }else{
-          //less than fifth top score
-          if(x == 4){
-            break; 
-            
-            //less than fourth top score
-          } else if(x == 3){
-              namesList[4].setContent(n);
-              pointsList[4].setContent(str(s));
-              
-            //less than third top score
-          } else if(x == 2){
-              namesList[4].setContent(namesList[3].getContent());
-              namesList[3].setContent(n);
-
-              pointsList[4].setContent(pointsList[3].getContent());
-              pointsList[3].setContent(str(s));
-              
-            //less than second top score
-          } else if(x == 1){
-              namesList[4].setContent(namesList[3].getContent());
-              namesList[3].setContent(namesList[2].getContent());
-              namesList[2].setContent(n);
-              
-              pointsList[4].setContent(pointsList[3].getContent());
-              pointsList[3].setContent(pointsList[2].getContent());
-              pointsList[2].setContent(str(s));
-              
-            //less than first top score
-          } else if(x == 0){
-              namesList[4].setContent(namesList[3].getContent());
-              namesList[3].setContent(namesList[2].getContent());
-              namesList[2].setContent(namesList[1].getContent());
-              namesList[1].setContent(n);
-              
-              pointsList[4].setContent(pointsList[3].getContent());
-              pointsList[3].setContent(pointsList[2].getContent());
-              pointsList[2].setContent(pointsList[1].getContent());
-              pointsList[1].setContent(str(s));
-
-            //new top score
-          } else{
-              namesList[4].setContent(namesList[3].getContent());
-              namesList[3].setContent(namesList[2].getContent());
-              namesList[2].setContent(namesList[1].getContent());
-              namesList[1].setContent(namesList[0].getContent());
-              namesList[0].setContent(n);
-              
-              pointsList[4].setContent(pointsList[3].getContent());
-              pointsList[3].setContent(pointsList[2].getContent());
-              pointsList[2].setContent(pointsList[1].getContent());
-              pointsList[1].setContent(pointsList[0].getContent());
-              pointsList[0].setContent(str(s));
-              
-          }
-      }
-    }
+  void update(String n,int s){
+    TableRow newRow = hs.addRow();
+    newRow.setString("Name", n);
+    newRow.setInt("Score", s);
+    hs.sort("Score");
+    saveTable(hs, "data/score/highscores.csv");
+    
   }
   
   void display(){
     font = createFont("Comic Sans MS Bold", 25);
-    namesList = file.getChildren("scores/entry/name");
-    pointsList = file.getChildren("scores/entry/points");
-    
     y = 175;
     textFont(font);
-    
-    for(int i = 0; i < pointsList.length; i++){
-      String num = str(i+1) + ")";
-      name = namesList[i].getContent();
-      score = pointsList[i].getContent();
-      text(num, 260, y);
-      text(name, 285, y);
-      text(score, 370, y);
-      
-      y += 50;
-    } 
+    int index = hs.getRowCount();
+    int i = index-1;
+    while(i>index-6){
+      TableRow r = hs.getRow(i);
+      int s = r.getInt("Score");
+      String n = r.getString("Name");
+      text(s,500,y);
+      text(n,400,y);
+      y+=40;
+      i--;
+    }
   }
 }
