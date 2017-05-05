@@ -6,11 +6,11 @@ class Button {
   int size;
   String status;
 
-  Button(String name) {
+  Button(String name,int size) {
     status = "Normal";
     this.img = new PImage[3];
     this.name = name;
-    this.size = 50;
+    this.size = size;
     this.pos = new PVector(10, 10);
   }
 
@@ -40,12 +40,16 @@ class Button {
     imageMode(CORNER);
   }
 
-  void update(PVector pos) {
+  void update(PVector pos,int size) {
     this.pos = pos.copy();
+    this.size = size;
+    for(PImage img :img){
+      img.resize(size,size);
+    }
   }
 
   void detect() {
-    if (abs(mouseX-pos.x) < 25 && abs(mouseY-pos.y) < 25) {
+    if (abs(mouseX-pos.x) < size/2 && abs(mouseY-pos.y) < size/2) {
       status = "Hover";
       if (mouse) {
         status = "Clicked";

@@ -20,9 +20,9 @@ class Box {
     img.resize(w, h);
     this.info = info;this.body = body;
     this.on = false;
-    close = new Button("Close");
+    close = new Button("Close",25);
     close.loadImg("Close"+" (", ").png");
-    close.update(new PVector(1100, 200));
+    close.update(new PVector(1100, 200),50);
   }
 
   void close() {
@@ -78,7 +78,7 @@ class Textbox extends Box {
   }
 
    void read(){
-    
+    //
   }
 
   void display() {

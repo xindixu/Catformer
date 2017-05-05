@@ -33,7 +33,7 @@ class Enivornment {
     flag = new Flag(new PVector(1450, 105), 50, 10, "flag");
     santa = new Flag(new PVector(-300, 200), 50, 10, "santa");
     
-    ws = new Splash(15, a.pos);
+   // ws = new Splash(7,a);
 
     coinsound = minim.loadFile("sounds/coin.mp3");
 
@@ -106,7 +106,7 @@ class Enivornment {
     for (int i = 0; i < buttonName.length; i ++) {
       String n = buttonName[i];
       Button b = button.get(n);
-      b.update(s.buttonPos[i]);
+      b.update(s.buttonPos[i],s.buttonSize[i]);
     }
   }
 

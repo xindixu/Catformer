@@ -49,7 +49,7 @@ void setup() {
 
 void draw() {
   en.display();
-  ws = new Splash(10, a.pos);
+ // ws = new Splash(10, a);
   
   gui.detectBttn();
   gui.bttnAct();
@@ -121,7 +121,6 @@ void keyPressed() {
     break;
   case 38: //up
     up = true;
-    ws.run();
     jumpsound.play();
     jumpsound.rewind();
     break;

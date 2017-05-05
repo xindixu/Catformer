@@ -5,7 +5,7 @@ class Particle{
   
   Particle(PVector _pos){
     pos = _pos.copy();
-    vel = new PVector(random(-5,5), random(0,10));
+    vel = new PVector(random(-3,3), random(0,5));
     //orient = _orient;
     life = 10;
   }
@@ -16,9 +16,9 @@ class Particle{
   }
   
   void display(){
-    stroke(#4082C1);
-    fill(#4082C1,life+100);
-    ellipse(pos.x,pos.y,10,10);
+    stroke(#98A5AF);
+    fill(#98A5AF,life+100);
+    ellipse(pos.x,pos.y,3,3);
   }
  
   boolean isOff(){

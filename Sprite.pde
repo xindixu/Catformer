@@ -1,5 +1,3 @@
-// fix the prob: check on ground: landing after jumping 
-
 class Sprite {
   String name;
   String[] stateName = {"Idle", "Walk", "Jump", "Fall", "Slide", "Dead"};
@@ -14,6 +12,7 @@ class Sprite {
   String collisionSide;
   boolean onland, headRight;
   int lives;
+  ArrayList<Particle> par;
   
 
   Sprite(String name, PVector pos) {
@@ -35,8 +34,10 @@ class Sprite {
     this.lives = 3;
     heart = loadImage("heart.png");
     heart.resize(10, 10);
-    
-
+    par = new ArrayList();
+    for (int i =0; i < 10; i ++) {
+        par.add(new Particle(this.pos));
+    }
   }
 
   void setupStates() {
@@ -89,11 +90,14 @@ class Sprite {
     if (currentState.equals("Jump")) {
       vel.set(vel.x, -5);
       onland = false;
-      
-      if (getState("Jump").end) {
-        changeState("Fall");
+      par = new ArrayList();
+      for (int i =0; i < 10; i ++) {
+        par.add(new Particle(this.pos));
       }
       
+      if (getState("Jump").end) {
+        changeState("Fall"); 
+      }
     }
     if (currentState.equals("Fall")) {
       if (onland) {
@@ -132,8 +136,6 @@ class Sprite {
     }
     if (up && !currentState.equals("Jump")) {
       changeState("Jump");
-      
-      
     }
   }
 
@@ -186,7 +188,10 @@ class Sprite {
       temp.display(true);
       popMatrix();
     }
-
+    
+    for(Particle p:par){
+      p.run();
+    }
     // display the actual position / feet position
     //ellipse(pos.x,pos.y,10,10);
     //ellipse(lhp.x,lhp.y,10,10);

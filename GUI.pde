@@ -60,7 +60,7 @@ class GUI {
   void generateButtons() {
     for (int i = 0; i < en.buttonName.length; i ++) {
       String n = en.buttonName[i];
-      Button b = new Button(n);
+      Button b = new Button(n,50);
       for (int j = 0; j < 3; j++) {
         b.loadImg(n+" (", ").png");
       }

@@ -5,6 +5,7 @@ class Screen {
   ArrayList<Integer> txc;
   ArrayList<PFont> txf;
   PVector[] buttonPos;
+  int[] buttonSize;
 
   Screen() {
     this.text = new ArrayList();
@@ -12,13 +13,15 @@ class Screen {
     this.txc = new ArrayList();
     this.txf = new ArrayList();
     buttonPos = new PVector[9];
+    buttonSize = new int[9];
   }
 
-  void construct(String[] text, PVector[] pos, color[] txc, PFont[] txf, PVector[] bPos) {
+  void construct(String[] text, PVector[] pos, color[] txc, PFont[] txf, PVector[] bPos, int[] bSize) {
     for (int i = 0; i < pos.length; i ++) {
       addText(text[i], pos[i], txc[i], txf[i]);
     }
     this.buttonPos = bPos.clone();
+    this.buttonSize = bSize.clone();
   }
 
 
@@ -52,20 +55,21 @@ void setupScreen() {
   int[] hTxc = {color(0), color(0)};
   PFont[] hTxf = {createFont("Comic Sans MS Bold", 48)};
   PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(-30, 550), new PVector(-30, 600)};
-
+  int[] hBttnSize = {50,50,50,50,50,50,50,50,50};
+  
   String[] pText = {"Pause", "Click the button to resume the game."};
   PVector[] ppos = {new PVector(width/2, 100), new PVector(width/2, 130)};
   int[] pTxc = {color(255), color(255)};
   PFont[] pTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20)};
   PVector[] pBttnPos ={new PVector(-30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
-
+  int[] pBttnSize = {50,50,50,50,50,50,50,50,50};
 
   String[] gText = {" "," "};
   PVector[] gpos = {new PVector(10, 20), new PVector(10, 40)};
   int[] gTxc = {color(255), color(255)};
   PFont[] gTxf = {createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] gBttnPos = {new PVector(-30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(-30, 500), new PVector(-30, 550), new PVector(-30, 600)};
-
+  int[] gBttnSize = {50,50,50,50,50,50,50,50,50};
   
   String[] wText = {"Congrats!", "Your score:", ""};
   String t = "Enter Your Initials:";
@@ -77,7 +81,7 @@ void setupScreen() {
   int[] wTxc = {color(255), color(255), color(255)};
   PFont[] wTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] wBttnPos = {new PVector(-30, 150), new PVector(30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
-
+  int[] wBttnSize = {50,50,50,50,50,50,50,50,50};
 
 
   String[] lText = {"Loser!", "Your score:", ""};
@@ -85,7 +89,8 @@ void setupScreen() {
   int[] lTxc = {color(255), color(255), color(255)};
   PFont[] lTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] lBttnPos = {new PVector(-30, 150), new PVector(30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
-
+  int[] lBttnSize = {50,50,50,50,50,50,50,50,50};
+  
   Screen game = new Screen();
   Screen pause = new Screen();
   Screen win = new Screen(); 
@@ -93,11 +98,11 @@ void setupScreen() {
   Screen home = new Screen();
 
 
-  home.construct(hText, hpos, hTxc, hTxf, hBttnPos);
-  game.construct(gText, gpos, gTxc, gTxf, gBttnPos);
-  pause.construct(pText, ppos, pTxc, pTxf, pBttnPos);
-  win.construct(wText, wpos, wTxc, wTxf, wBttnPos);
-  lose.construct(lText, lpos, lTxc, lTxf, lBttnPos);
+  home.construct(hText, hpos, hTxc, hTxf, hBttnPos,hBttnSize);
+  game.construct(gText, gpos, gTxc, gTxf, gBttnPos,gBttnSize);
+  pause.construct(pText, ppos, pTxc, pTxf, pBttnPos,pBttnSize);
+  win.construct(wText, wpos, wTxc, wTxf, wBttnPos,wBttnSize);
+  lose.construct(lText, lpos, lTxc, lTxf, lBttnPos,lBttnSize);
 
 
   en.screen.put("Home", home);
