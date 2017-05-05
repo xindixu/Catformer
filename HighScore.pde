@@ -13,9 +13,11 @@ class HighScore{
   }
   
   void update(String n, int s){
+    println("!!!!!!");
+    println(s);
     namesList = file.getChildren("scores/entry/name");
     pointsList = file.getChildren("scores/entry/points");
-    for(int x = 4; x >= -1; x--){
+    for(int x = 4; x >= 0; x--){
       if((pointsList[x].getIntContent()) <= s){
         continue;
       }else{

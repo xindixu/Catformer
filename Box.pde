@@ -75,7 +75,7 @@ class Textbox extends Box {
     super(name, w, h, info,body, pos, isHighScore);
   }
 
-   void read(){
+  void read(){
     highscore.update(text,s.score);
   }
 

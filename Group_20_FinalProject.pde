@@ -83,6 +83,7 @@ void draw() {
           en.music();
           Box bname = en.box.get("Name");
           bname.on = true;
+          text="";
           break;
       }
     }
@@ -139,8 +140,10 @@ void keyPressed() {
   else if(key == RETURN || key == ENTER){
     text = "";
     Textbox bname = (Textbox)en.box.get("Name");
-    bname.on = false;
     bname.read();
+    bname.on = false;
+    Box high_score = en.box.get("High_score");
+    high_score.on = true;
   }
   else{
     if(text.length() < 3){
