@@ -26,9 +26,10 @@ class HighScore{
       TableRow r = hs.getRow(i);
       int s = r.getInt("Score");
       String n = r.getString("Name");
-      text(s,500,y);
-      text(n,400,y);
-      y+=40;
+      fill(0);
+      text(s,350,y);
+      text(n,290,y);
+      y+=50;
       i--;
     }
   }

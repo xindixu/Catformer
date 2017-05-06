@@ -46,6 +46,7 @@ class Box {
       pushMatrix();
       translate(pos.x, pos.y);
       image(img, 0, 0);
+      fill(0);
       textSize(40);
       text(info,225,37);
       textSize(12);
