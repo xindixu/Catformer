@@ -1,0 +1,10 @@
+This group project has a lot of animations and functionality which highlights the main learning objectives practiced in previous assignments.
+
+Reagan was responsible for the Coins, the Flag, and the Score Classes as well as helped the group with parts of the main method and the Environment and Screen classes. He also wrote the README and Description files. He also implemented the sound and music functionality in addition to the data storage and display of highscores.
+
+Desiree was responsible for the Enemy class along with helping with the Screen, environment, main method, State, and button classes. She also helped implement the heiarchal animations relying on the movement of the main sprite and the asthetic organization of each level. 
+
+Xindi was responsible for the Platform, Platform_on_ground, Sprite, Timer, and water classes, and also helped with the main method, environment, screen, and state classes. She helped finalize the secondary animation, relying on the movement of the main sprite character, and the highscore class. 
+
+
+Sprites, tiles, and object artwork were sourced free of charge from http://www.gameart2d.com/freebies.html
