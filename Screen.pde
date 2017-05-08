@@ -51,15 +51,15 @@ void setupScreen() {
   //{"Start", "Restart", "Resume", "Pause", "Quit", "Music", "High_score", "Info", "Home"};
   //{"Game","Pause","Win","Lose","Home"};
   String[] hText = {"CATFORMER THE GAME"};
-  PVector[] hpos = {new PVector(width/2, 100)};
-  int[] hTxc = {color(0), color(0)};
+  PVector[] hpos = {new PVector(900, 100)};
+  int[] hTxc = {color(0), color(0, color(0))};
   PFont[] hTxf = {createFont("Comic Sans MS Bold", 48)};
   PVector[] hBttnPos ={new PVector(30, 150), new PVector(-30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(-30, 550), new PVector(-30, 600)};
   int[] hBttnSize = {50,50,50,50,50,50,50,50,50};
   
   String[] pText = {"Pause", "Click the button to resume the game."};
   PVector[] ppos = {new PVector(width/2, 100), new PVector(width/2, 130)};
-  int[] pTxc = {color(255), color(255)};
+  int[] pTxc = {color(0), color(0), color(0)};
   PFont[] pTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20)};
   PVector[] pBttnPos ={new PVector(-30, 150), new PVector(30, 200), new PVector(30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
   int[] pBttnSize = {50,50,50,50,50,50,50,50,50};
@@ -77,7 +77,7 @@ void setupScreen() {
   //Box enterHighScore = new Textbox("Text_box", 700, 500, t, d, new PVector(width/2-350, height/2-250),true, 100, 200);
   //en.box.put("Enter_High_Score",enter_high_score);
   //enterHighScore.display();
-  PVector[] wpos = {new PVector(500, 100), new PVector(500, 130), new PVector(630, 130)};
+  PVector[] wpos = {new PVector(50, 50), new PVector(50, 80), new PVector(180, 80)};
   int[] wTxc = {color(255), color(255), color(255)};
   PFont[] wTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] wBttnPos = {new PVector(-30, 150), new PVector(30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
@@ -85,8 +85,8 @@ void setupScreen() {
 
 
   String[] lText = {"Loser!", "Your score:", ""};
-  PVector[] lpos = {new PVector(width/2, 100), new PVector(width/2, 130), new PVector(630, 130)};
-  int[] lTxc = {color(255), color(255), color(255)};
+  PVector[] lpos = {new PVector(50, 50), new PVector(50, 80), new PVector(180, 80)};
+  int[] lTxc = {color(0), color(0), color(0)};
   PFont[] lTxf = {createFont("Comic Sans MS Bold", 32), createFont("Comic Sans MS Bold", 20), createFont("Comic Sans MS Bold", 20)};
   PVector[] lBttnPos = {new PVector(-30, 150), new PVector(30, 200), new PVector(-30, 250), new PVector(-30, 300), new PVector(30, 350), new PVector(30, 400), new PVector(30, 450), new PVector(30, 500), new PVector(30, 550), new PVector(30, 600)};
   int[] lBttnSize = {50,50,50,50,50,50,50,50,50};
